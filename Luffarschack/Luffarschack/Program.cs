@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Luffarschack
+class Program
 {
-    class Program
+    public static void menu()
     {
-        static void Main(string[] args)
-        {
-        }
+        "Välkommen till TicTacToe!!".EchoWriteLine();
+        "Ange namn på Spelare1\n->".EchoWrite();
+        "Ange namn på Spelare2\n->".EchoWrite();
+    }
+    static void Main()
+    {
+        Board board = new Board();
+        board.PrintBoard();
+        menu();
     }
 }
+
