@@ -1,4 +1,0 @@
-Luffarschack
-============
-
-Grupp 4
