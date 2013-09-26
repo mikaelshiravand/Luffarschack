@@ -10,17 +10,24 @@ class Program
 
     public static void menu()
     {
-        "Välkommen till TicTacToe!!".EchoWriteLine();
-        "Ange namn på Spelare1\n->".EchoWrite();
-        "Ange namn på Spelare2\n->".EchoWrite();
+        "Välkommen till TicTacToe!".EchoWriteLine();
+        // Mikael: Ändrade så att programmet börjar med att spelarna får mata in sina namn, som lagras i Player klassen.
+        "Ange namn på Spelare 1\n-> ".EchoWrite();
+        Player1.Name = Console.ReadLine();
+        "Ange namn på Spelare 2\n-> ".EchoWrite();
+        Player2.Name = Console.ReadLine();
     }
     static void Main()
     {
-        Player1 = new Player("Exempelnamn1", "X");
-        Player2 = new Player("Exempelnamn2", "O");
+        // Mikael: Vi kan skapa Players (i Main) med tomma strings som namn eftersom de ändå kommer ändras efter spelarnas egna inmatningar.
+        Player1 = new Player("", "X");
+        Player2 = new Player("", "O");
         MyBoard = new Board();
         MyBoard.PrintBoard();
         menu();
+        Player.Move();
+
+        
     }
 }
 

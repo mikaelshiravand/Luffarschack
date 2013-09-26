@@ -9,7 +9,7 @@ public static class Extensions
     }
     public static void EchoWrite(this string strValue)
     {
-        Console.WriteLine(strValue);
+        Console.Write(strValue);
     }
 }
 

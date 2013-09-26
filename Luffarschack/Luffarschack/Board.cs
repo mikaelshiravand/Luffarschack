@@ -35,14 +35,30 @@ public class Board
     {
         Console.WriteLine("╔═════╦═════╦═════╗");
         Console.WriteLine("║     ║     ║     ║");
+        Console.WriteLine("║  -  ║  -  ║  -  ║");
         Console.WriteLine("║     ║     ║     ║");
         Console.WriteLine("╠═════╬═════╬═════╣");
         Console.WriteLine("║     ║     ║     ║");
+        Console.WriteLine("║  -  ║  -  ║  -  ║");
         Console.WriteLine("║     ║     ║     ║");
         Console.WriteLine("╠═════╬═════╬═════╣");
         Console.WriteLine("║     ║     ║     ║");
+        Console.WriteLine("║  -  ║  -  ║  -  ║");
         Console.WriteLine("║     ║     ║     ║");
         Console.WriteLine("╚═════╩═════╩═════╝");
     }
 }
 
+
+/* 
+    Mikael: Boardens x/y-positioner för de 9 olika platserna (för framtida användning).
+    Console.SetCursorPosition(3, 2);    <- A1
+    Console.SetCursorPosition(9, 2);    <- B1
+    Console.SetCursorPosition(15, 2);   <- C1
+    Console.SetCursorPosition(3, 6);    <- A2
+    Console.SetCursorPosition(9, 6);    <- B2
+    Console.SetCursorPosition(15, 6);   <- C2
+    Console.SetCursorPosition(3, 10);   <- A3
+    Console.SetCursorPosition(9, 10);   <- B3
+    Console.SetCursorPosition(15, 10);  <- C3
+*/
