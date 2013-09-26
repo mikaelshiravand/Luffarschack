@@ -5,6 +5,7 @@ public class Player
 {
     // Properties
     public string Name;
+
     public int NumberOfWins;
     public int NumberOfLoses;
     public string Marker;
