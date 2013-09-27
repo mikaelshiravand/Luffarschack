@@ -26,7 +26,7 @@ public class Board
         // Har fastnat.
        
       
-        for (int i = 0; i < myBoard.GetLength(0); i++)
+        /*for (int i = 0; i < myBoard.GetLength(0); i++) // Martin har kommenterat ut under utveckling av programmet
         {
             for (int j = 0; j < myBoard.GetLength(1); j++)
             {
@@ -48,7 +48,7 @@ public class Board
 
             }
 
-        }
+        }/*
         
 
         myBoard[2, 2] = "X";
@@ -67,6 +67,7 @@ public class Board
         
     }
     // Methods
+    
 
     // Linh: Här är de 8:a möjliga vinnarsätten.
     /* Något som kan behövas senare. 
@@ -119,29 +120,30 @@ public class Board
             case 8:
                 myBoard[2, 0] = "X" || "O";
                 myBoard[1, 1] = "X" || "O";
-                myBoard[0, 2] = "X"|| "O";
+                myBoard[0, 2] = "X" || "O";
                 break;
 
         }
     }
     */
 
-    
+
     public void PrintBoard()
     {
-        Console.WriteLine("╔═══════╦═══════╦═══════╗");
-        Console.WriteLine("║       ║       ║       ║");
-        Console.WriteLine("║   -   ║   -   ║   -   ║");
-        Console.WriteLine("║       ║       ║       ║");
-        Console.WriteLine("╠═══════╬═══════╬═══════╣");
-        Console.WriteLine("║       ║       ║       ║");
-        Console.WriteLine("║   -   ║   -   ║   -   ║");
-        Console.WriteLine("║       ║       ║       ║");
-        Console.WriteLine("╠═══════╬═══════╬═══════╣");
-        Console.WriteLine("║       ║       ║       ║");
-        Console.WriteLine("║   -   ║   -   ║   -   ║");
-        Console.WriteLine("║       ║       ║       ║");
-        Console.WriteLine("╚═══════╩═══════╩═══════╝");
+        Console.SetCursorPosition(0, 1);
+        Console.WriteLine("  ╔═══════╦═══════╦═══════╗");
+        Console.WriteLine("  ║       ║       ║       ║");
+        Console.WriteLine("  ║   -   ║   -   ║   -   ║");
+        Console.WriteLine("  ║       ║       ║       ║");
+        Console.WriteLine("  ╠═══════╬═══════╬═══════╣");
+        Console.WriteLine("  ║       ║       ║       ║");
+        Console.WriteLine("  ║   -   ║   -   ║   -   ║");
+        Console.WriteLine("  ║       ║       ║       ║");
+        Console.WriteLine("  ╠═══════╬═══════╬═══════╣");
+        Console.WriteLine("  ║       ║       ║       ║");
+        Console.WriteLine("  ║   -   ║   -   ║   -   ║");
+        Console.WriteLine("  ║       ║       ║       ║");
+        Console.WriteLine("  ╚═══════╩═══════╩═══════╝");
     }
 }
 

@@ -7,7 +7,7 @@ public class Player
     public string Name;
 
     public int NumberOfWins;
-    public int NumberOfLoses;
+    // Martin: Jag tog bort NumberOfLoses för det kommer ju ändå bara att vara samma info som den andre spelarens vinster
     public string Marker;
 
     // Constructor
@@ -16,7 +16,6 @@ public class Player
         Name = name;
         Marker = marker;
         NumberOfWins = 0;
-        NumberOfLoses = 0;
     }
     
     // Methods
