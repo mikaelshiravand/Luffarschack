@@ -52,36 +52,80 @@ public class Board
             localColor = "Green";
         else
             localColor = "Red";
-        switch (square)
+
+        // MIKAEL: Fixad kod som gör att man bara kan sätta värdet på en plats en gång per spel 
+        // TODO: Resetta tillbaka SquareArray's values till 1-9 efter ett spel är färdigt
+        // TODO: Göra så att man inte kan skriva ett nummer som redan är taget (just nu slösas ens tur om man råkar skriva ett nummer som redan använts)
+
+        if (square == "1" && SquareArray[0] == "1")
         {
-            case "1":
-                marker.CW(6, 3, localColor);
-                break;
-            case "2":
-                marker.CW(14, 3, localColor);
-                break;
-            case "3":
-                marker.CW(22, 3, localColor);
-                break;
-            case "4":
-                marker.CW(6, 7, localColor);
-                break;
-            case "5":
-                marker.CW(14, 7, localColor);
-                break;
-            case "6":
-                marker.CW(22, 7, localColor);
-                break;
-            case "7":
-                marker.CW(6, 11, localColor);
-                break;
-            case "8":
-                marker.CW(14, 11, localColor);
-                break;
-            case "9":
-                marker.CW(22, 11, localColor);
-                break;
+            marker.CW(6, 3, localColor);
         }
+        else if (square == "2" && SquareArray[1] == "2")
+        {
+            marker.CW(14, 3, localColor);
+        }
+        else if (square == "3" && SquareArray[2] == "3")
+        {
+            marker.CW(22, 3, localColor);
+        }
+        else if (square == "4" && SquareArray[3] == "4")
+        {
+            marker.CW(6, 7, localColor);
+        }
+        else if (square == "5" && SquareArray[4] == "5")
+        {
+            marker.CW(14, 7, localColor);
+        }
+        else if (square == "6" && SquareArray[5] == "6")
+        {
+            marker.CW(22, 7, localColor);
+        }
+        else if (square == "7" && SquareArray[6] == "7")
+        {
+            marker.CW(6, 11, localColor);
+        }
+        else if (square == "8" && SquareArray[7] == "8")
+        {
+            marker.CW(14, 11, localColor);
+        }
+        else if (square == "9" && SquareArray[8] == "9")
+        {
+            marker.CW(22, 11, localColor);
+        }
+
+        // MIKAEL: Martin's gamla kod
+
+        //switch (square)
+        //{
+        //    case "1":
+        //        marker.CW(6, 3, localColor);
+        //        break;
+        //    case "2":
+        //        marker.CW(14, 3, localColor);
+        //        break;
+        //    case "3":
+        //        marker.CW(22, 3, localColor);
+        //        break;
+        //    case "4":
+        //        marker.CW(6, 7, localColor);
+        //        break;
+        //    case "5":
+        //        marker.CW(14, 7, localColor);
+        //        break;
+        //    case "6":
+        //        marker.CW(22, 7, localColor);
+        //        break;
+        //    case "7":
+        //        marker.CW(6, 11, localColor);
+        //        break;
+        //    case "8":
+        //        marker.CW(14, 11, localColor);
+        //        break;
+        //    case "9":
+        //        marker.CW(22, 11, localColor);
+        //        break;
+        //}
     }
 
 
@@ -92,36 +136,80 @@ public class Board
         string playerMarker = marker;
         string boardsquare = square;
 
-        switch (boardsquare)
+        // MIKAEL: Fixad kod som gör att man bara kan sätta värdet på en plats en gång per spel 
+        // TODO: Resetta tillbaka SquareArray's values till 1-9 efter ett spel är färdigt
+        // TODO: Göra så att man inte kan skriva ett nummer som redan är taget (just nu slösas ens tur om man råkar skriva ett nummer som redan använts)
+
+        if (square == "1" && SquareArray[0] == "1")
         {
-            case "1":
-                SquareArray[0] = playerMarker;
-                break;
-            case "2":
-                SquareArray[1] = playerMarker;
-                break;
-            case "3":
-                SquareArray[2] = playerMarker;
-                break;
-            case "4":
-                SquareArray[3] = playerMarker;
-                break;
-            case "5":
-                SquareArray[4] = playerMarker;
-                break;
-            case "6":
-                SquareArray[5] = playerMarker;
-                break;
-            case "7":
-                SquareArray[6] = playerMarker;
-                break;
-            case "8":
-                SquareArray[7] = playerMarker;
-                break;
-            case "9":
-                SquareArray[8] = playerMarker;
-                break;
+            SquareArray[0] = playerMarker;
         }
+        else if (square == "2" && SquareArray[1] == "2")
+        {
+            SquareArray[1] = playerMarker;
+        }
+        else if (square == "3" && SquareArray[2] == "3")
+        {
+            SquareArray[2] = playerMarker;
+        }
+        else if (square == "4" && SquareArray[3] == "4")
+        {
+            SquareArray[3] = playerMarker;
+        }
+        else if (square == "5" && SquareArray[4] == "5")
+        {
+            SquareArray[4] = playerMarker;
+        }
+        else if (square == "6" && SquareArray[5] == "6")
+        {
+            SquareArray[5] = playerMarker;
+        }
+        else if (square == "7" && SquareArray[6] == "7")
+        {
+            SquareArray[6] = playerMarker;
+        }
+        else if (square == "8" && SquareArray[7] == "8")
+        {
+            SquareArray[7] = playerMarker;
+        }
+        else if (square == "9" && SquareArray[8] == "9")
+        {
+            SquareArray[8] = playerMarker;
+        }
+
+
+        // MIKAEL: Martin's gamla kod
+
+        //switch (boardsquare)
+        //{
+        //    case "1":
+        //        SquareArray[0] = playerMarker;
+        //        break;
+        //    case "2":
+        //        SquareArray[1] = playerMarker;
+        //        break;
+        //    case "3":
+        //        SquareArray[2] = playerMarker;
+        //        break;
+        //    case "4":
+        //        SquareArray[3] = playerMarker;
+        //        break;
+        //    case "5":
+        //        SquareArray[4] = playerMarker;
+        //        break;
+        //    case "6":
+        //        SquareArray[5] = playerMarker;
+        //        break;
+        //    case "7":
+        //        SquareArray[6] = playerMarker;
+        //        break;
+        //    case "8":
+        //        SquareArray[7] = playerMarker;
+        //        break;
+        //    case "9":
+        //        SquareArray[8] = playerMarker;
+        //        break;
+        //}
 
 
 

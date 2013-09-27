@@ -70,15 +70,23 @@ class Program
             playerChoiceOfSquare = Console.ReadLine();
             // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
             // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
-            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
+
+            // Mikael: Bytte plats på följande två rader för att mina nya if-satser skall fungera
+
             MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player1.Marker);
+            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
+            
         }
         else
         {
             ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Yellow");
             playerChoiceOfSquare = Console.ReadLine();
-            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
+
+            // Mikael: Bytte plats på följande två rader för att mina nya if-satser skall fungera
+
             MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player2.Marker);
+            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
+            
 
         }
 
