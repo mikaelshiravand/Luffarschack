@@ -87,7 +87,7 @@ public class Board
                 break;
 
             case 3:
-                myBoard[2, 0] = "X" || "0";
+                myBoard[2, 0] = "X" || "O";
                 myBoard[2, 1] = "X" || "O";
                 myBoard[2, 2] = "X"|| "O";
                 break;
