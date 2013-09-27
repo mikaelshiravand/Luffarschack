@@ -20,10 +20,9 @@ class Program
         "Välkommen till TicTacToe!".EchoWriteLine();
         // Mikael: Ändrade så att programmet börjar med att spelarna får mata in sina namn, som lagras i Player klassen.
         "Ange namn på Spelare 1\n-> ".EchoWrite();
-        //TODOMNPlayer1.Name = Console.ReadLine();
+        Player1.Name = Console.ReadLine();
         "Ange namn på Spelare 2\n-> ".EchoWrite();
-        //TODOMNPlayer2.Name = Console.ReadLine();
-        Console.ReadKey(); //TODOMNTa bort denna rad
+        Player2.Name = Console.ReadLine();
     }
     public static string printInfoAboutPlayers()
     {
@@ -72,14 +71,14 @@ class Program
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
         }
 
-
     }
 
     // Kallas på en gång innan varje spel.
     public static void whoWillStart()
     {
         Random rand = new Random();
-        whoseTurn = rand.Next(1, 2);
+        //Martin: google verkar säga att man ska skriva .Next("lägsta talet", "högsta talet") men 3 verkar vara "mindre än 3"
+        whoseTurn = rand.Next(1, 3);
     }
 
     // Martin: oneTurn är en av nio rundor i spelet
@@ -97,8 +96,8 @@ class Program
     {
         // Mikael: Vi kan skapa Players (i Main) med tomma strings som namn eftersom de ändå kommer ändras efter spelarnas egna inmatningar.
         programInfo();
-        Player1 = new Player("XXXXEtt ganska långt namn", "X"); //TODOMN nollställ värdena
-        Player2 = new Player("OOOOSebastian Sebastiansson", "O"); //TODOMN nollställ värdena
+        Player1 = new Player("", "X");
+        Player2 = new Player("", "O");
         MyBoard = new Board();
 
         // Martin: Här startar själv programmet med utskrifter på skärmen 
