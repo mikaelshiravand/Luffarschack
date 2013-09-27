@@ -5,146 +5,167 @@ public class Board
 {
     // Properties
     public string Name { get; set; }
-   
-    public string MarkerX = "X"; 
-    public string MarkerO = "O"; 
+    public string Layout { get; set; }
+    // Martin: jag kom på en sak, varför ska vi använda en tvådimensionell array? Funkar ju lika bra med en vanlig. Eller???
+    // jag ändrade iaf
+    public string[] SquareArray = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+    //Martin:Tror inte att dessa markörer kommer att användas, eller?
+    /*public string MarkerX = "X"; 
+    public string MarkerO = "O"; */
 
     // Constructor
     public Board()
     {
-
-        string[,] myBoard = { { "A1", "B1", "C1" }, //Rad 1
-                              { "A2", "B2", "C2" }, //Rad 2
-                              { "A3", "B3", "C3" } };  //Rad 3
-
-
-        // Linh: Funderade ganska länge hur vi skulle göra if-satserna
-        // Testade på olika sätt med tyvärr inget resultat...
-        // Men jag gjorde en loop som går igenom varje "värde" iaf.
-        // Sedan blir det fundersamt hur man t.ex. sätter
-        // arrayen [0,0] = "A1" till ett värde X lr O på if sats?
-        // Har fastnat.
-       
-      
-        /*for (int i = 0; i < myBoard.GetLength(0); i++) // Martin har kommenterat ut under utveckling av programmet
-        {
-            for (int j = 0; j < myBoard.GetLength(1); j++)
-            {
-                if (j == 0)
-                {
-                    Console.WriteLine("Loopar igenom rad X och kolumn 1 :");
-                }
-                else if (j == 1)
-                {
-                    Console.WriteLine("Är inne på rad X kolumn 2:");
-                }
-                else
-                {
-                    Console.WriteLine("Är inne på rad X kolumn 3");
-                }            
-                
-                Console.WriteLine(myBoard[i, j]);
-
-
-            }
-
-        }/*
-        
-
-        myBoard[2, 2] = "X";
-        // Martin säger: ovan sätter jag värde "X" till C3, eftersom raderna har index 0-2.
-        // Jag har en tanke om att spelplanen uppdateras ungefär så här: 
-        /* If (player1Choice == C2)
-         * {
-         *      myBoard[1,2] = "X"
-         * }
-         * Sen är det player2, och denne sätter ett O osv.
-         * Sen får vi göra en metod checkWinner() med massa if-satser för att kolla om tre rutor i rad har samma string-värde, dvs X eller 0.
-         * checkWinner() får sen köras efter varje placerad X eller O.
-         */
-
-
-        
+        // Martin: Kanske inte bästa sättet att deklarera en array, men det verkar funka iaf.
+        SquareArray = SquareArray;
+        Layout = GetLayout();
     }
+
+
     // Methods
-    
-
-    // Linh: Här är de 8:a möjliga vinnarsätten.
-    /* Något som kan behövas senare. 
-    public void CheckWinner(string myBoard)
-    {
-        switch (checkWin)
-        {
-            case 1:
-                myBoard[0, 0] = "X" || "O";
-                myBoard[0, 1] = "X" || "O";
-                myBoard[0, 2] = "X" || "O";
-                break;
-
-            case 2:
-                myBoard[1, 0] = "X" || "O";
-                myBoard[1, 1] = "X"|| "O";
-                myBoard[1, 2] = "X" || "O";
-                break;
-
-            case 3:
-                myBoard[2, 0] = "X" || "O";
-                myBoard[2, 1] = "X" || "O";
-                myBoard[2, 2] = "X"|| "O";
-                break;
-
-            case 4:
-                myBoard[0, 0] = "X" || "O";
-                myBoard[1, 0] = "X" || "O";
-                myBoard[2, 0] = "X" || "O";
-                break;
-
-            case 5:
-                myBoard[0, 1] = "X" || "O";
-                myBoard[1, 1] = "X" || "O";
-                myBoard[2, 2] = "X" || "O";
-                break;
-
-            case 6:
-                myBoard[0, 2] = "X" || "O";
-                myBoard[1, 2] = "X" || "O";
-                myBoard[2, 2] = "X" || "O";
-                break;
-
-            case 7:
-                myBoard[0, 0] = "X" || "O";
-                myBoard[1, 1] = "X" || "O";
-                myBoard[2, 2] = "X" || "O";
-                break;
-
-            case 8:
-                myBoard[2, 0] = "X" || "O";
-                myBoard[1, 1] = "X" || "O";
-                myBoard[0, 2] = "X" || "O";
-                break;
-
-        }
-    }
-    */
-
 
     public void PrintBoard()
     {
         Console.SetCursorPosition(0, 1);
-        Console.WriteLine("  ╔═══════╦═══════╦═══════╗");
-        Console.WriteLine("  ║       ║       ║       ║");
-        Console.WriteLine("  ║   -   ║   -   ║   -   ║");
-        Console.WriteLine("  ║       ║       ║       ║");
-        Console.WriteLine("  ╠═══════╬═══════╬═══════╣");
-        Console.WriteLine("  ║       ║       ║       ║");
-        Console.WriteLine("  ║   -   ║   -   ║   -   ║");
-        Console.WriteLine("  ║       ║       ║       ║");
-        Console.WriteLine("  ╠═══════╬═══════╬═══════╣");
-        Console.WriteLine("  ║       ║       ║       ║");
-        Console.WriteLine("  ║   -   ║   -   ║   -   ║");
-        Console.WriteLine("  ║       ║       ║       ║");
-        Console.WriteLine("  ╚═══════╩═══════╩═══════╝");
+        Layout.EchoWrite();
     }
+
+    // Martin: Innan mina ändringar fre förmiddag printade vi bara ut spelplanen med console.writeline och hade väl tankar på att 
+    // skriva ut X och O ovanpå spelplanen, som ett extra lager. Det var så JAG tänkte under torsdagen iaf.
+    // Men om vi lagrar spelplanen i en vanlig sting-variabel enl nedan, kan vi ändra de värdena som vi vill. 
+    // Anledningen till att metoden GetLayout() finns är för att vi ska kunna uppdatera vad som skrivs ut på skärmen.
+    // Innan jag kom på att göra det i en egen metod så skapades Layout direkt i konstruktorn men när MyBoard skapades,
+    // så uppdaterades inte skärmen även om SquareArray[1] värde faktiskt ändrades i bakgrunden.
+    public string GetLayout()
+    {
+        string localLayout = "";
+
+        localLayout += "  ╔═══════╦═══════╦═══════╗\n";
+        localLayout += "  ║       ║       ║       ║\n";
+        localLayout += "  ║   " + SquareArray[0] + "   ║   " + SquareArray[1] + "   ║   " + SquareArray[2] + "   ║\n";
+        localLayout += "  ║       ║       ║       ║\n";
+        localLayout += "  ╠═══════╬═══════╬═══════╣\n";
+        localLayout += "  ║       ║       ║       ║\n";
+        localLayout += "  ║   " + SquareArray[3] + "   ║   " + SquareArray[4] + "   ║   " + SquareArray[5] + "   ║\n";
+        localLayout += "  ║       ║       ║       ║\n";
+        localLayout += "  ╠═══════╬═══════╬═══════╣\n";
+        localLayout += "  ║       ║       ║       ║\n";
+        localLayout += "  ║   " + SquareArray[6] + "   ║   " + SquareArray[7] + "   ║   " + SquareArray[8] + "   ║\n";
+        localLayout += "  ║       ║       ║       ║\n";
+        localLayout += "  ╚═══════╩═══════╩═══════╝\n";
+
+        return localLayout;
+    }
+    //Ändrar värdet på spelplanen under spelets gång.
+    public void ChangeValueOfBoardSquare(string square, string marker)
+    {
+        string playerMarker = marker;
+        string boardsquare = square;
+
+        switch (boardsquare)
+        {
+            case "1":
+                SquareArray[0] = playerMarker;
+                break;
+            case "2":
+                SquareArray[1] = playerMarker;
+                break;
+            case "3":
+                SquareArray[2] = playerMarker;
+                break;
+            case "4":
+                SquareArray[3] = playerMarker;
+                break;
+            case "5":
+                SquareArray[4] = playerMarker;
+                break;
+            case "6":
+                SquareArray[5] = playerMarker;
+                break;
+            case "7":
+                SquareArray[6] = playerMarker;
+                break;
+            case "8":
+                SquareArray[7] = playerMarker;
+                break;
+            case "9":
+                SquareArray[8] = playerMarker;
+                break;
+        }
+
+        Layout = GetLayout();
+
+    }
+    //switch (checkWin)
+    //    {
+    //        case 1:
+    //            myBoard[0, 0] = "X" || "O";
+    //            myBoard[0, 1] = "X" || "O";
+    //            myBoard[0, 2] = "X" || "O";
+    //            break;
+    public void CheckWinner()
+    {
+        // Linh: Här är de 8:a möjliga vinnarsätten.
+        /* Något som kan behövas senare. 
+        public void CheckWinner(string myBoard)
+        {
+            switch (checkWin)
+            {
+                case 1:
+                    myBoard[0, 0] = "X" || "O";
+                    myBoard[0, 1] = "X" || "O";
+                    myBoard[0, 2] = "X" || "O";
+                    break;
+
+                case 2:
+                    myBoard[1, 0] = "X" || "O";
+                    myBoard[1, 1] = "X"|| "O";
+                    myBoard[1, 2] = "X" || "O";
+                    break;
+
+                case 3:
+                    myBoard[2, 0] = "X" || "O";
+                    myBoard[2, 1] = "X" || "O";
+                    myBoard[2, 2] = "X"|| "O";
+                    break;
+
+                case 4:
+                    myBoard[0, 0] = "X" || "O";
+                    myBoard[1, 0] = "X" || "O";
+                    myBoard[2, 0] = "X" || "O";
+                    break;
+
+                case 5:
+                    myBoard[0, 1] = "X" || "O";
+                    myBoard[1, 1] = "X" || "O";
+                    myBoard[2, 2] = "X" || "O";
+                    break;
+
+                case 6:
+                    myBoard[0, 2] = "X" || "O";
+                    myBoard[1, 2] = "X" || "O";
+                    myBoard[2, 2] = "X" || "O";
+                    break;
+
+                case 7:
+                    myBoard[0, 0] = "X" || "O";
+                    myBoard[1, 1] = "X" || "O";
+                    myBoard[2, 2] = "X" || "O";
+                    break;
+
+                case 8:
+                    myBoard[2, 0] = "X" || "O";
+                    myBoard[1, 1] = "X" || "O";
+                    myBoard[0, 2] = "X" || "O";
+                    break;
+
+            }
+        }
+        */
+    }
+
+
 }
 
 
@@ -161,3 +182,39 @@ public class Board
     Console.SetCursorPosition(12, 10);   <- B3
     Console.SetCursorPosition(20, 10);  <- C3
 */
+
+
+// Linh: Funderade ganska länge hur vi skulle göra if-satserna
+// Testade på olika sätt med tyvärr inget resultat...
+// Men jag gjorde en loop som går igenom varje "värde" iaf.
+// Sedan blir det fundersamt hur man t.ex. sätter
+// arrayen [0,0] = "A1" till ett värde X lr O på if sats?
+// Har fastnat.
+
+
+/*for (int i = 0; i < myBoard.GetLength(0); i++) // Martin har kommenterat ut under utveckling av programmet
+{
+    for (int j = 0; j < myBoard.GetLength(1); j++)
+    {
+        if (j == 0)
+        {
+            Console.WriteLine("Loopar igenom rad X och kolumn 1 :");
+        }
+        else if (j == 1)
+        {
+            Console.WriteLine("Är inne på rad X kolumn 2:");
+        }
+        else
+        {
+            Console.WriteLine("Är inne på rad X kolumn 3");
+        }            
+                
+        Console.WriteLine(myBoard[i, j]);
+
+
+    }
+
+}*/
+
+
+

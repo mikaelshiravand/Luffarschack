@@ -7,12 +7,14 @@ class Program
     public static Board MyBoard;
     public static Player Player1;
     public static Player Player2;
+    public static int whoseTurn = 0;
+    public static string playerChoiceOfSquare = "";
 
     static void programInfo()
     {
         Console.Title = "Grupp 4: Tic Tac Toe";
         Console.SetWindowSize(80, 27);
-    }   
+    }
     static void startMenu()
     {
         "Välkommen till TicTacToe!".EchoWriteLine();
@@ -25,6 +27,7 @@ class Program
     }
     public static string printInfoAboutPlayers()
     {
+        Console.SetCursorPosition(3, 2);
         string output = "";
 
         output += "\t\t\t\tSpelare 1: " + Player1.Name + "\n";
@@ -38,23 +41,73 @@ class Program
 
         return output;
     }
+
+    // Gör så att spelarna spelar varannan gång
+    public static void turnQueue()
+    {
+        if (whoseTurn == 0)
+        {
+            // Programmet kommer in här innan första rundan i varje spelomgång,
+            // eller ska göra det när vi färdiga rättare sagt (tror jag iaf // Martin)
+            whoWillStart();
+        }
+        else
+        {
+            // Programmet kommer in här innan varje runda i spelomgången (utom första rundan)
+            whoseTurn++;
+        }
+
+        if (whoseTurn % 2 == 0)
+        {
+            ("\nDet är " + Player1.Name + " s tur, välj ruta och tryck ENTER").EchoWriteLine();
+            playerChoiceOfSquare = Console.ReadLine();
+            // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
+            // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
+            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
+        }
+        else
+        {
+            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER").EchoWriteLine();
+            playerChoiceOfSquare = Console.ReadLine();
+            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
+        }
+
+
+    }
+
+    // Kallas på en gång innan varje spel.
+    public static void whoWillStart()
+    {
+        Random rand = new Random();
+        whoseTurn = rand.Next(1, 2);
+    }
+
+    // Martin: oneTurn är en av nio rundor i spelet
+    public static void oneTurn()
+    {
+        while (true) // ska ändras till "while (checkWinner() != null) eller liknande
+        {
+            Console.Clear();
+            printInfoAboutPlayers().EchoWrite();
+            MyBoard.PrintBoard();
+            turnQueue();
+        }
+    }
     static void Main()
     {
         // Mikael: Vi kan skapa Players (i Main) med tomma strings som namn eftersom de ändå kommer ändras efter spelarnas egna inmatningar.
         programInfo();
-        Player1 = new Player("Ett ganska långt namn", "X"); //TODOMN nollställ värdena
-        Player2 = new Player("Sebastian Sebastiansson", "O"); //TODOMN nollställ värdena
+        Player1 = new Player("XXXXEtt ganska långt namn", "X"); //TODOMN nollställ värdena
+        Player2 = new Player("OOOOSebastian Sebastiansson", "O"); //TODOMN nollställ värdena
         MyBoard = new Board();
-        startMenu();
-        Console.Clear();
-        
-        Console.SetCursorPosition(3, 2); 
-        printInfoAboutPlayers().EchoWrite();
-        MyBoard.PrintBoard();
-        
-        Player.Move();
 
-        
+        // Martin: Här startar själv programmet med utskrifter på skärmen 
+        startMenu();
+
+        oneTurn();
+
+
+
     }
 }
 
