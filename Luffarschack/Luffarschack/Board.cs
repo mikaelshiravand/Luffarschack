@@ -19,7 +19,7 @@ public class Board
     {
         // Martin: Kanske inte bästa sättet att deklarera en array, men det verkar funka iaf.
         SquareArray = SquareArray;
-        Layout = GetLayout();
+        // Behöver inte sätta något värde för en spelplan eftersom vi skriver ut en statisk Layout = GetLayout();
     }
 
 
@@ -27,36 +27,65 @@ public class Board
 
     public void PrintBoard()
     {
+        Console.ForegroundColor = ConsoleColor.White;
         Console.SetCursorPosition(0, 1);
-        Layout.EchoWrite();
+        "  ╔═══════╦═══════╦═══════╗\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ║   1   ║   2   ║   3   ║\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ╠═══════╬═══════╬═══════╣\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ║   4   ║   5   ║   6   ║\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ╠═══════╬═══════╬═══════╣\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ║   7   ║   8   ║   9   ║\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ╚═══════╩═══════╩═══════╝\n".EchoWrite();
     }
 
-    // Martin: Innan mina ändringar fre förmiddag printade vi bara ut spelplanen med console.writeline och hade väl tankar på att 
-    // skriva ut X och O ovanpå spelplanen, som ett extra lager. Det var så JAG tänkte under torsdagen iaf.
-    // Men om vi lagrar spelplanen i en vanlig sting-variabel enl nedan, kan vi ändra de värdena som vi vill. 
-    // Anledningen till att metoden GetLayout() finns är för att vi ska kunna uppdatera vad som skrivs ut på skärmen.
-    // Innan jag kom på att göra det i en egen metod så skapades Layout direkt i konstruktorn men när MyBoard skapades,
-    // så uppdaterades inte skärmen även om SquareArray[1] värde faktiskt ändrades i bakgrunden.
-    public string GetLayout()
+
+    public void ChangeMarkerOnBoardSquare(string square, string marker)
     {
-        string localLayout = "";
-
-        localLayout += "  ╔═══════╦═══════╦═══════╗\n";
-        localLayout += "  ║       ║       ║       ║\n";
-        localLayout += "  ║   " + SquareArray[0] + "   ║   " + SquareArray[1] + "   ║   " + SquareArray[2] + "   ║\n";
-        localLayout += "  ║       ║       ║       ║\n";
-        localLayout += "  ╠═══════╬═══════╬═══════╣\n";
-        localLayout += "  ║       ║       ║       ║\n";
-        localLayout += "  ║   " + SquareArray[3] + "   ║   " + SquareArray[4] + "   ║   " + SquareArray[5] + "   ║\n";
-        localLayout += "  ║       ║       ║       ║\n";
-        localLayout += "  ╠═══════╬═══════╬═══════╣\n";
-        localLayout += "  ║       ║       ║       ║\n";
-        localLayout += "  ║   " + SquareArray[6] + "   ║   " + SquareArray[7] + "   ║   " + SquareArray[8] + "   ║\n";
-        localLayout += "  ║       ║       ║       ║\n";
-        localLayout += "  ╚═══════╩═══════╩═══════╝\n";
-
-        return localLayout;
+        string localColor = "";
+        if (marker == "X")
+            localColor = "Green";
+        else
+            localColor = "Red";
+        switch (square)
+        {
+            case "1":
+                marker.CW(6, 3, localColor);
+                break;
+            case "2":
+                marker.CW(14, 3, localColor);
+                break;
+            case "3":
+                marker.CW(22, 3, localColor);
+                break;
+            case "4":
+                marker.CW(6, 7, localColor);
+                break;
+            case "5":
+                marker.CW(14, 7, localColor);
+                break;
+            case "6":
+                marker.CW(22, 7, localColor);
+                break;
+            case "7":
+                marker.CW(6, 11, localColor);
+                break;
+            case "8":
+                marker.CW(14, 11, localColor);
+                break;
+            case "9":
+                marker.CW(22, 11, localColor);
+                break;
+        }
     }
+
+
+
     //Ändrar värdet på spelplanen under spelets gång.
     public void ChangeValueOfBoardSquare(string square, string marker)
     {
@@ -94,7 +123,7 @@ public class Board
                 break;
         }
 
-        Layout = GetLayout();
+
 
     }
     //switch (checkWin)

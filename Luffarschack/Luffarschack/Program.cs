@@ -12,33 +12,39 @@ class Program
 
     static void programInfo()
     {
+        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.Clear();
         Console.Title = "Grupp 4: Tic Tac Toe";
         Console.SetWindowSize(80, 27);
     }
     static void startMenu()
     {
+        Console.ForegroundColor = ConsoleColor.Yellow;
         "Välkommen till TicTacToe!".EchoWriteLine();
         // Mikael: Ändrade så att programmet börjar med att spelarna får mata in sina namn, som lagras i Player klassen.
         "Ange namn på Spelare 1\n-> ".EchoWrite();
+        Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
+        Console.ForegroundColor = ConsoleColor.Yellow;
         "Ange namn på Spelare 2\n-> ".EchoWrite();
+        Console.ForegroundColor = ConsoleColor.Red;
         Player2.Name = Console.ReadLine();
     }
-    public static string printInfoAboutPlayers()
+    public static void printInfoAboutPlayers()
     {
         Console.SetCursorPosition(3, 2);
-        string output = "";
 
-        output += "\t\t\t\tSpelare 1: " + Player1.Name + "\n";
-        output += "\t\t\t\tAntal segrar: " + Player1.NumberOfWins + "\n";
-        output += "\t\t\t\tSpelmarkör: " + Player1.Marker + "\n";
-        output += "\n\n";
-        output += "\t\t\t\tSpelare 2: " + Player2.Name + "\n";
-        output += "\t\t\t\tAntal segrar: " + Player2.NumberOfWins + "\n";
-        output += "\t\t\t\tSpelmarkör: " + Player2.Marker + "\n";
+        Console.ForegroundColor = ConsoleColor.Green;
+        ("\t\t\t\tSpelare 1: " + Player1.Name).EchoWriteLine();
+        ("\t\t\t\tAntal segrar: " + Player1.NumberOfWins).EchoWriteLine();
+        ("\t\t\t\tSpelmarkör: " + Player1.Marker).EchoWriteLine();
+        ("\n\n").EchoWriteLine();
+        Console.ForegroundColor = ConsoleColor.Red;
+        ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
+        ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
+        ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
 
 
-        return output;
     }
 
     // Gör så att spelarna spelar varannan gång
@@ -56,19 +62,24 @@ class Program
             whoseTurn++;
         }
 
+        Console.ForegroundColor = ConsoleColor.Yellow;
+
         if (whoseTurn % 2 == 0)
         {
-            ("\nDet är " + Player1.Name + " s tur, välj ruta och tryck ENTER").EchoWriteLine();
+            ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Yellow");
             playerChoiceOfSquare = Console.ReadLine();
             // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
             // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
+            MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player1.Marker);
         }
         else
         {
-            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER").EchoWriteLine();
+            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Yellow");
             playerChoiceOfSquare = Console.ReadLine();
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
+            MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player2.Marker);
+
         }
 
     }
@@ -86,9 +97,6 @@ class Program
     {
         while (true) // ska ändras till "while (checkWinner() != null) eller liknande
         {
-            Console.Clear();
-            printInfoAboutPlayers().EchoWrite();
-            MyBoard.PrintBoard();
             turnQueue();
         }
     }
@@ -102,7 +110,9 @@ class Program
 
         // Martin: Här startar själv programmet med utskrifter på skärmen 
         startMenu();
-
+        Console.Clear();
+        printInfoAboutPlayers();
+        MyBoard.PrintBoard();
         oneTurn();
 
 
