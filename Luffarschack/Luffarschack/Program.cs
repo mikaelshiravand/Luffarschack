@@ -21,7 +21,6 @@ class Program
     {
         Console.ForegroundColor = ConsoleColor.White;
         "Välkommen till TicTacToe!".EchoWriteLine();
-        // Mikael: Ändrade så att programmet börjar med att spelarna får mata in sina namn, som lagras i Player klassen.
         Console.ForegroundColor = ConsoleColor.DarkGray;
         "Ange namn på Spelare 1\n-> ".EchoWrite();
         Console.ForegroundColor = ConsoleColor.Green;
@@ -48,20 +47,18 @@ class Program
 
     }
 
-    // Gör så att spelarna spelar varannan gång
     public static void turnQueue()
     {
         if (whoseTurn == 0)
         {
-            // Programmet kommer in här innan första rundan i varje spelomgång,
-            // eller ska göra det när vi färdiga rättare sagt (tror jag iaf // Martin)
             whoWillStart();
         }
         else
         {
-            // Programmet kommer in här innan varje runda i spelomgången (utom första rundan)
             whoseTurn++;
         }
+
+
 
         Console.ForegroundColor = ConsoleColor.DarkGray;
 
@@ -72,28 +69,39 @@ class Program
             // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
             // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
 
-            // Mikael: Bytte plats på följande två rader för att mina nya if-satser skall fungera
-
             MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player1.Marker);
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
-            
         }
         else
         {
             ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
             playerChoiceOfSquare = Console.ReadLine();
-
-            // Mikael: Bytte plats på följande två rader för att mina nya if-satser skall fungera
-
+            
             MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player2.Marker);
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
-            
+        }
 
+        MyBoard.CheckWinner();
+
+        if (MyBoard.P1Win == true)
+        {
+            //Spelare1 vinner.
+            Player1.NumberOfWins++;
+
+            //Tillfällig Console.Clear så att man faktiskt förstår om det fungerar
+            Console.Clear();
+        }
+        else if (MyBoard.P2Win == true)
+        {
+            //Spelare2 vinner.
+            Player2.NumberOfWins++;
+
+            //Tillfällig Console.Clear så att man faktiskt förstår om det fungerar
+            Console.Clear();
         }
 
     }
 
-    // Kallas på en gång innan varje spel.
     public static void whoWillStart()
     {
         Random rand = new Random();
@@ -101,32 +109,26 @@ class Program
         whoseTurn = rand.Next(1, 3);
     }
 
-    // Martin: oneTurn är en av nio rundor i spelet
     public static void oneTurn()
     {
-        while (true) // ska ändras till "while (checkWinner() != null) eller liknande
+        while (MyBoard.P1Win == false || MyBoard.P2Win == false)
         {
             turnQueue();
         }
     }
     static void Main()
     {
-        // Mikael: Vi kan skapa Players (i Main) med tomma strings som namn eftersom de ändå kommer ändras efter spelarnas egna inmatningar.
         programInfo();
         Player1 = new Player("", "X");
         Player2 = new Player("", "O");
         MyBoard = new Board();
 
-        // Martin: Här startar själv programmet med utskrifter på skärmen 
         startMenu();
         Console.Clear();
         printInfoAboutPlayers();
         MyBoard.PrintBoard();
         oneTurn();
         
-
-
-
     }
 }
 
