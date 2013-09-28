@@ -51,7 +51,7 @@ public class Board
         if (marker == "X")
             localColor = "Green";
         else
-            localColor = "Red";
+            localColor = "Blue";
 
         // MIKAEL: Fixad kod som gör att man bara kan sätta värdet på en plats en gång per spel 
         // TODO: Resetta tillbaka SquareArray's values till 1-9 efter ett spel är färdigt
@@ -93,7 +93,7 @@ public class Board
         {
             marker.CW(22, 11, localColor);
         }
-
+ 
         // MIKAEL: Martin's gamla kod
 
         //switch (square)
@@ -214,72 +214,45 @@ public class Board
 
 
     }
-    //switch (checkWin)
-    //    {
-    //        case 1:
-    //            myBoard[0, 0] = "X" || "O";
-    //            myBoard[0, 1] = "X" || "O";
-    //            myBoard[0, 2] = "X" || "O";
-    //            break;
-    public void CheckWinner()
+
+    // Linh: Tog bort gamla case switch i med att den inte gäller längre
+    // Likaså med den gamla for-loopen.
+    // Lyckas ej få in vinnar-situationerna :( 
+    // Jag får errors hela tiden, syntaxfel eller annat? I don't know.
+    public void CheckWinner(string marker)
     {
-        // Linh: Här är de 8:a möjliga vinnarsätten.
-        /* Något som kan behövas senare. 
-        public void CheckWinner(string myBoard)
+        // checkWin blir till markers värde
+        // Nu hoppas jag att jag har anropat rätt så att den siffran blev omvandlad till
+        // X eller O vilket ni gjorde i ChangeValueOfBoardSquare
+        // Annars är jag helt ute och cyklar.
+        string checkWin = marker;
+        // Loopar igenom varje värde i vår array
+        foreach (string array in SquareArray)
         {
-            switch (checkWin)
+            // Om värdet innehåller X eller O ska den göra detta
+            if (checkWin == "X" || checkWin == "O")
             {
-                case 1:
-                    myBoard[0, 0] = "X" || "O";
-                    myBoard[0, 1] = "X" || "O";
-                    myBoard[0, 2] = "X" || "O";
+                // Nu har jag den på while och sätter den på true för
+                // jag vill den ska loopa igenom alternativen för olika sätt
+                // man kan vinna på, det kluriga är att jag inte klarar av 
+                // att sätta ihop t.ex. array 0,1 och 2 och se om alla innehåller X
+                // så vinner player 1 som har X då och vice versa.
+                while (true)
+                {
+                    // Loopa igenom vinnaralternativen.
+                    
+                    // Sätter break efter den har loopat igenom alla alternativen.
                     break;
+                }
+                
+            }
 
-                case 2:
-                    myBoard[1, 0] = "X" || "O";
-                    myBoard[1, 1] = "X"|| "O";
-                    myBoard[1, 2] = "X" || "O";
-                    break;
-
-                case 3:
-                    myBoard[2, 0] = "X" || "O";
-                    myBoard[2, 1] = "X" || "O";
-                    myBoard[2, 2] = "X"|| "O";
-                    break;
-
-                case 4:
-                    myBoard[0, 0] = "X" || "O";
-                    myBoard[1, 0] = "X" || "O";
-                    myBoard[2, 0] = "X" || "O";
-                    break;
-
-                case 5:
-                    myBoard[0, 1] = "X" || "O";
-                    myBoard[1, 1] = "X" || "O";
-                    myBoard[2, 2] = "X" || "O";
-                    break;
-
-                case 6:
-                    myBoard[0, 2] = "X" || "O";
-                    myBoard[1, 2] = "X" || "O";
-                    myBoard[2, 2] = "X" || "O";
-                    break;
-
-                case 7:
-                    myBoard[0, 0] = "X" || "O";
-                    myBoard[1, 1] = "X" || "O";
-                    myBoard[2, 2] = "X" || "O";
-                    break;
-
-                case 8:
-                    myBoard[2, 0] = "X" || "O";
-                    myBoard[1, 1] = "X" || "O";
-                    myBoard[0, 2] = "X" || "O";
-                    break;
+            else
+            {
 
             }
         }
-        */
+
     }
 
 
@@ -300,38 +273,6 @@ public class Board
     Console.SetCursorPosition(20, 10);  <- C3
 */
 
-
-// Linh: Funderade ganska länge hur vi skulle göra if-satserna
-// Testade på olika sätt med tyvärr inget resultat...
-// Men jag gjorde en loop som går igenom varje "värde" iaf.
-// Sedan blir det fundersamt hur man t.ex. sätter
-// arrayen [0,0] = "A1" till ett värde X lr O på if sats?
-// Har fastnat.
-
-
-/*for (int i = 0; i < myBoard.GetLength(0); i++) // Martin har kommenterat ut under utveckling av programmet
-{
-    for (int j = 0; j < myBoard.GetLength(1); j++)
-    {
-        if (j == 0)
-        {
-            Console.WriteLine("Loopar igenom rad X och kolumn 1 :");
-        }
-        else if (j == 1)
-        {
-            Console.WriteLine("Är inne på rad X kolumn 2:");
-        }
-        else
-        {
-            Console.WriteLine("Är inne på rad X kolumn 3");
-        }            
-                
-        Console.WriteLine(myBoard[i, j]);
-
-
-    }
-
-}*/
 
 
 

@@ -12,22 +12,23 @@ class Program
 
     static void programInfo()
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.BackgroundColor = ConsoleColor.Black;
         Console.Clear();
         Console.Title = "Grupp 4: Tic Tac Toe";
         Console.SetWindowSize(80, 27);
     }
     static void startMenu()
     {
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.White;
         "Välkommen till TicTacToe!".EchoWriteLine();
         // Mikael: Ändrade så att programmet börjar med att spelarna får mata in sina namn, som lagras i Player klassen.
+        Console.ForegroundColor = ConsoleColor.DarkGray;
         "Ange namn på Spelare 1\n-> ".EchoWrite();
         Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.DarkGray;
         "Ange namn på Spelare 2\n-> ".EchoWrite();
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.Blue;
         Player2.Name = Console.ReadLine();
     }
     public static void printInfoAboutPlayers()
@@ -39,7 +40,7 @@ class Program
         ("\t\t\t\tAntal segrar: " + Player1.NumberOfWins).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player1.Marker).EchoWriteLine();
         ("\n\n").EchoWriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.Blue;
         ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
         ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
@@ -62,11 +63,11 @@ class Program
             whoseTurn++;
         }
 
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.DarkGray;
 
         if (whoseTurn % 2 == 0)
         {
-            ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Yellow");
+            ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
             playerChoiceOfSquare = Console.ReadLine();
             // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
             // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
@@ -79,7 +80,7 @@ class Program
         }
         else
         {
-            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Yellow");
+            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
             playerChoiceOfSquare = Console.ReadLine();
 
             // Mikael: Bytte plats på följande två rader för att mina nya if-satser skall fungera
@@ -122,6 +123,7 @@ class Program
         printInfoAboutPlayers();
         MyBoard.PrintBoard();
         oneTurn();
+        
 
 
 
