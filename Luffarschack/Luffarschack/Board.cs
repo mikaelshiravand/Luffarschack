@@ -156,7 +156,7 @@ public class Board
         {
             P1Win = true;
         }
-        else if (SquareArray[0] == "X" && SquareArray[4] == "X" && SquareArray[9] == "X")
+        else if (SquareArray[0] == "X" && SquareArray[4] == "X" && SquareArray[8] == "X")
         {
             P1Win = true;
         }
