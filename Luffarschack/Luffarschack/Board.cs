@@ -198,8 +198,21 @@ public class Board
         {
             P2Win = true;
         }
-
     }
 
+    public void ResetProperties()
+    {
+        P1Win = false;
+        P2Win = false;
 
+        SquareArray[0] = "1";
+        SquareArray[1] = "2";
+        SquareArray[2] = "3";
+        SquareArray[3] = "4";
+        SquareArray[4] = "5";
+        SquareArray[5] = "6";
+        SquareArray[6] = "7";
+        SquareArray[7] = "8";
+        SquareArray[8] = "9";
+    }
 }

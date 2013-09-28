@@ -43,8 +43,6 @@ class Program
         ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
         ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
-
-
     }
 
     public static void turnQueue()
@@ -57,8 +55,6 @@ class Program
         {
             whoseTurn++;
         }
-
-
 
         Console.ForegroundColor = ConsoleColor.DarkGray;
 
@@ -88,18 +84,23 @@ class Program
             //Spelare1 vinner.
             Player1.NumberOfWins++;
 
-            //Tillfällig Console.Clear så att man faktiskt förstår om det fungerar
             Console.Clear();
+            printInfoAboutPlayers();
+            MyBoard.PrintBoard();
+            MyBoard.ResetProperties();
+            oneTurn();
         }
         else if (MyBoard.P2Win == true)
         {
             //Spelare2 vinner.
             Player2.NumberOfWins++;
 
-            //Tillfällig Console.Clear så att man faktiskt förstår om det fungerar
             Console.Clear();
+            printInfoAboutPlayers();
+            MyBoard.PrintBoard();
+            MyBoard.ResetProperties();
+            oneTurn();
         }
-
     }
 
     public static void whoWillStart()
@@ -128,7 +129,6 @@ class Program
         printInfoAboutPlayers();
         MyBoard.PrintBoard();
         oneTurn();
-        
     }
 }
 
