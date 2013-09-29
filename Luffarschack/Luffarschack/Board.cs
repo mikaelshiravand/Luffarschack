@@ -132,20 +132,7 @@ public class Board
 
     public void CheckWinner()
     {
-        if (SquareArray[0] != "1" &&
-            SquareArray[1] != "2" &&
-            SquareArray[2] != "3" &&
-            SquareArray[3] != "4" &&
-            SquareArray[4] != "5" &&
-            SquareArray[5] != "6" &&
-            SquareArray[6] != "7" &&
-            SquareArray[7] != "8" &&
-            SquareArray[8] != "9")
-        {
-            NoWin = true;
-        }
-
-        else if (SquareArray[0] == "X" && SquareArray[1] == "X" && SquareArray[2] == "X")
+        if (SquareArray[0] == "X" && SquareArray[1] == "X" && SquareArray[2] == "X")
         {
             P1Win = true;
         }
@@ -173,7 +160,7 @@ public class Board
         {
             P1Win = true;
         }
-        else if (SquareArray[2] == "X" && SquareArray[4] == "X" && SquareArray[7] == "X")
+        else if (SquareArray[2] == "X" && SquareArray[4] == "X" && SquareArray[6] == "X")
         {
             P1Win = true;
         }
@@ -207,9 +194,22 @@ public class Board
         {
             P2Win = true;
         }
-        else if (SquareArray[2] == "O" && SquareArray[4] == "O" && SquareArray[7] == "O")
+        else if (SquareArray[2] == "O" && SquareArray[4] == "O" && SquareArray[6] == "O")
         {
             P2Win = true;
+        }
+
+        else if (SquareArray[0] != "1" &&
+            SquareArray[1] != "2" &&
+            SquareArray[2] != "3" &&
+            SquareArray[3] != "4" &&
+            SquareArray[4] != "5" &&
+            SquareArray[5] != "6" &&
+            SquareArray[6] != "7" &&
+            SquareArray[7] != "8" &&
+            SquareArray[8] != "9")
+        {
+            NoWin = true;
         }
     }
 

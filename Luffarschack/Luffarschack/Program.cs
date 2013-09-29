@@ -79,17 +79,7 @@ class Program
 
         MyBoard.CheckWinner();
 
-            //Ingen vinner.
-        if (MyBoard.NoWin == true)
-        {
-            Console.Clear();
-            printInfoAboutPlayers();
-            MyBoard.PrintBoard();
-            MyBoard.ResetProperties();
-            oneTurn();
-        }
-
-        else if (MyBoard.P1Win == true)
+        if (MyBoard.P1Win == true)
         {
             //Spelare1 vinner.
             Player1.NumberOfWins++;
@@ -106,6 +96,15 @@ class Program
             //Spelare2 vinner.
             Player2.NumberOfWins++;
 
+            Console.Clear();
+            printInfoAboutPlayers();
+            MyBoard.PrintBoard();
+            MyBoard.ResetProperties();
+            oneTurn();
+        }
+            //Ingen vinner.
+        else if (MyBoard.NoWin == true)
+        {
             Console.Clear();
             printInfoAboutPlayers();
             MyBoard.PrintBoard();
