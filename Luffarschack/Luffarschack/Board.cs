@@ -8,7 +8,7 @@ public class Board
     public string[] SquareArray = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     public bool P1Win = false;
     public bool P2Win = false;
-
+    public bool NoWin = false;
 
     public Board()
     {
@@ -132,7 +132,20 @@ public class Board
 
     public void CheckWinner()
     {
-        if (SquareArray[0] == "X" && SquareArray[1] == "X" && SquareArray[2] == "X")
+        if (SquareArray[0] != "1" &&
+            SquareArray[1] != "2" &&
+            SquareArray[2] != "3" &&
+            SquareArray[3] != "4" &&
+            SquareArray[4] != "5" &&
+            SquareArray[5] != "6" &&
+            SquareArray[6] != "7" &&
+            SquareArray[7] != "8" &&
+            SquareArray[8] != "9")
+        {
+            NoWin = true;
+        }
+
+        else if (SquareArray[0] == "X" && SquareArray[1] == "X" && SquareArray[2] == "X")
         {
             P1Win = true;
         }
@@ -204,6 +217,7 @@ public class Board
     {
         P1Win = false;
         P2Win = false;
+        NoWin = false;
 
         SquareArray[0] = "1";
         SquareArray[1] = "2";

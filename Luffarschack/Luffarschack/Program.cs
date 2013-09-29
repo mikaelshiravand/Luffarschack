@@ -79,7 +79,17 @@ class Program
 
         MyBoard.CheckWinner();
 
-        if (MyBoard.P1Win == true)
+            //Ingen vinner.
+        if (MyBoard.NoWin == true)
+        {
+            Console.Clear();
+            printInfoAboutPlayers();
+            MyBoard.PrintBoard();
+            MyBoard.ResetProperties();
+            oneTurn();
+        }
+
+        else if (MyBoard.P1Win == true)
         {
             //Spelare1 vinner.
             Player1.NumberOfWins++;
@@ -90,6 +100,7 @@ class Program
             MyBoard.ResetProperties();
             oneTurn();
         }
+
         else if (MyBoard.P2Win == true)
         {
             //Spelare2 vinner.
@@ -101,6 +112,7 @@ class Program
             MyBoard.ResetProperties();
             oneTurn();
         }
+        
     }
 
     public static void whoWillStart()
