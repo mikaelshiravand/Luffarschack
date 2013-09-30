@@ -73,8 +73,7 @@ class Program
                 if (MyBoard.SquareArray[checkAgainstSquareArray] == "X" || MyBoard.SquareArray[checkAgainstSquareArray] == "O")
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    "Du kan inte sätta din markör på en upptagen ruta, tryck ENTER för att välja ny ruta".EchoWriteLine();
-                    Console.ReadKey();
+                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
                 else
@@ -95,8 +94,7 @@ class Program
                 if (MyBoard.SquareArray[checkAgainstSquareArray] == "X" || MyBoard.SquareArray[checkAgainstSquareArray] == "O")
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    "Du kan inte sätta din markör på en upptagen ruta, tryck ENTER för att välja ny ruta".EchoWriteLine();
-                    Console.ReadKey();
+                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
                 else
@@ -112,33 +110,24 @@ class Program
         {
             //Spelare1 vinner.
             Player1.NumberOfWins++;
-
-            Console.Clear();
-            printInfoAboutPlayers();
-            MyBoard.PrintBoard();
-            MyBoard.ResetProperties();
-            oneTurn();
+            // Supersnygg mini-metod istället för megastor copypaste
+            MyBoard.NewGame(MyBoard);
         }
 
         else if (MyBoard.P2Win == true)
         {
             //Spelare2 vinner.
             Player2.NumberOfWins++;
-
-            Console.Clear();
-            printInfoAboutPlayers();
-            MyBoard.PrintBoard();
-            MyBoard.ResetProperties();
-            oneTurn();
+            // Supersnygg mini-metod istället för megastor copypaste
+            MyBoard.NewGame(MyBoard);
         }
             //Ingen vinner.
         else if (MyBoard.NoWin == true)
         {
-            Console.Clear();
-            printInfoAboutPlayers();
-            MyBoard.PrintBoard();
-            MyBoard.ResetProperties();
-            oneTurn();
+            //(Oavgjort poängen skrivs här)
+            //t.ex. MyBoard.NoWin++;
+            // Supersnygg mini-metod istället för megastor copypaste
+            MyBoard.NewGame(MyBoard);
         }
         
     }

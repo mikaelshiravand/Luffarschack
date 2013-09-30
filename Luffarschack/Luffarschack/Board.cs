@@ -12,7 +12,7 @@ public class Board
 
     public Board()
     {
-        SquareArray = SquareArray;
+
     }
 
     public void PrintBoard()
@@ -228,5 +228,14 @@ public class Board
         SquareArray[6] = "7";
         SquareArray[7] = "8";
         SquareArray[8] = "9";
+    }
+
+    public void NewGame(Board MyBoard)
+    {
+        Console.Clear();
+        Program.printInfoAboutPlayers();
+        MyBoard.PrintBoard();
+        MyBoard.ResetProperties();
+        Program.oneTurn();
     }
 }
