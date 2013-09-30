@@ -9,6 +9,7 @@ class Program
     public static Player Player2;
     public static int whoseTurn = 0;
     public static string playerChoiceOfSquare = "";
+    public static int checkAgainstSquareArray;
 
     static void programInfo()
     {
@@ -45,6 +46,7 @@ class Program
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
     }
 
+    
     public static void turnQueue()
     {
         if (whoseTurn == 0)
@@ -60,19 +62,46 @@ class Program
 
         if (whoseTurn % 2 == 0)
         {
-            ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
-            playerChoiceOfSquare = Console.ReadLine();
-            // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
-            // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
+            while (true)
+            {
+                ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
+                playerChoiceOfSquare = Console.ReadLine();
+                // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
+                // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
 
+                checkAgainstSquareArray = Convert.ToInt32(playerChoiceOfSquare) - 1;
+                if (MyBoard.SquareArray[checkAgainstSquareArray] == "X" || MyBoard.SquareArray[checkAgainstSquareArray] == "O")
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    "Du kan inte sätta din markör på en upptagen ruta, tryck ENTER för att välja ny ruta".EchoWriteLine();
+                    Console.ReadKey();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                }
+                else
+                    break;
+            }
+            
             MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player1.Marker);
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
         }
         else
         {
-            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
-            playerChoiceOfSquare = Console.ReadLine();
-            
+            while (true)
+            {
+                ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
+                playerChoiceOfSquare = Console.ReadLine();
+
+                checkAgainstSquareArray = Convert.ToInt32(playerChoiceOfSquare) - 1;
+                if (MyBoard.SquareArray[checkAgainstSquareArray] == "X" || MyBoard.SquareArray[checkAgainstSquareArray] == "O")
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    "Du kan inte sätta din markör på en upptagen ruta, tryck ENTER för att välja ny ruta".EchoWriteLine();
+                    Console.ReadKey();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                }
+                else
+                    break;
+            }
             MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player2.Marker);
             MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
         }
