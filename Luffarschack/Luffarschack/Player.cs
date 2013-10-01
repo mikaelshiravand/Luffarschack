@@ -5,6 +5,7 @@ public class Player
 {
     public string Name;
     public int NumberOfWins;
+    public int NoWin;
     public string Marker;
     public static string SquareOfChoice = "";
 
@@ -13,6 +14,7 @@ public class Player
         Name = name;
         Marker = marker;
         NumberOfWins = 0;
+        NoWin = 0;
     }
     public static void setColorForCorrectingInput(string playerMarker)
     {

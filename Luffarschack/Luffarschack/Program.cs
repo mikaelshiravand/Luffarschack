@@ -22,15 +22,11 @@ class Program
     {
         Console.ForegroundColor = ConsoleColor.White;
         "Välkommen till TicTacToe!".EchoWriteLine();
-        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.ForegroundColor = ConsoleColor.Gray;
         "Ange namn på Spelare 1\n-> ".EchoWrite();
-
-        Console.ForegroundColor = ConsoleColor.Gray; // Är det finare med Grått ist för MörkGrått
-        "Ange namn på Spelare 1\n-> ".EchoWrite();
-
         Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
-        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.ForegroundColor = ConsoleColor.Gray;
         "Ange namn på Spelare 2\n-> ".EchoWrite();
         Console.ForegroundColor = ConsoleColor.Blue;
         Player2.Name = Console.ReadLine();
@@ -91,6 +87,9 @@ class Program
 
         if (MyBoard.P1Win == true)
         {
+            clearLowerScreen();
+            ("GRATTIS! " + Player1.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
+            Console.ReadKey();
             //Spelare1 vinner.
             Player1.NumberOfWins++;
             // Supersnygg mini-metod istället för megastor copypaste
@@ -99,16 +98,25 @@ class Program
 
         else if (MyBoard.P2Win == true)
         {
+            clearLowerScreen();
+            ("GRATTIS! " + Player2.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
+            Console.ReadKey();
             //Spelare2 vinner.
             Player2.NumberOfWins++;
             // Supersnygg mini-metod istället för megastor copypaste
             MyBoard.NewGame(MyBoard);
         }
-            //Ingen vinner.
+
         else if (MyBoard.NoWin == true)
         {
-            //(Oavgjort poängen skrivs här)
-            //t.ex. MyBoard.NoWin++;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            clearLowerScreen();
+            ("\nOAVGJORT! " + Player1.Name + " och " + Player2.Name + " bättre lycka nästa gång." +
+            "\nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Red");
+            Console.ReadKey();
+            // Ingen vinner.
+            Player1.NoWin++;
+            Player2.NoWin++;
             // Supersnygg mini-metod istället för megastor copypaste
             MyBoard.NewGame(MyBoard);
         }
