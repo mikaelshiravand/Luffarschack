@@ -14,7 +14,13 @@ public class Player
         Marker = marker;
         NumberOfWins = 0;
     }
-   
+    public static void setColorForCorrectingInput(string playerMarker)
+    {
+        if (playerMarker == "X")
+            Console.ForegroundColor = ConsoleColor.Green;
+        else
+            Console.ForegroundColor = ConsoleColor.Blue;
+    }
     public static void InputSquareChoice(string playerMarker)
     { 
         int localNumber;
@@ -34,14 +40,16 @@ public class Player
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    setColorForCorrectingInput(playerMarker);
+                    //Console.ForegroundColor = ConsoleColor.DarkGray; TODOMN:Ta bort denna raden vid rensning av kod
                 }
             }
             else // Om inmatningen är högre än nummer 9, eller om den är 0 eller om det är en/flera bokstav händer detta:
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 "Fel Inmatning. Försök igen!".EchoWriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                setColorForCorrectingInput(playerMarker);
+                //Console.ForegroundColor = ConsoleColor.DarkGray; TODOMN: Ta bort denna raden vid rensning av kod
             }
         } // Slut på while(true)
     } // Slut på playerInputSquareChoice
