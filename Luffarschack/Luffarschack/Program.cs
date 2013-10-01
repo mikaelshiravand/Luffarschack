@@ -38,11 +38,13 @@ class Program
         Console.ForegroundColor = ConsoleColor.Green;
         ("\t\t\t\tSpelare 1: " + Player1.Name).EchoWriteLine();
         ("\t\t\t\tAntal segrar: " + Player1.NumberOfWins).EchoWriteLine();
+        ("\t\t\t\tOavgjort: " + Player1.NoWin).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player1.Marker).EchoWriteLine();
         ("\n\n").EchoWriteLine();
         Console.ForegroundColor = ConsoleColor.Blue;
         ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
         ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
+        ("\t\t\t\tOavgjort: " + Player2.NoWin).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
     }
 
@@ -111,7 +113,7 @@ class Program
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             clearLowerScreen();
-            ("\nOAVGJORT! " + Player1.Name + " och " + Player2.Name + " bättre lycka nästa gång." +
+            ("\nOAVGJORT!" +
             "\nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Red");
             Console.ReadKey();
             // Ingen vinner.
