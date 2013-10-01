@@ -9,7 +9,7 @@ class Program
     public static Player Player2;
     public static int whoseTurn = 0;
     public static string playerChoiceOfSquare = "";
-    public static int checkAgainstSquareArray;
+ 
 
     static void programInfo()
     {
@@ -24,6 +24,10 @@ class Program
         "Välkommen till TicTacToe!".EchoWriteLine();
         Console.ForegroundColor = ConsoleColor.DarkGray;
         "Ange namn på Spelare 1\n-> ".EchoWrite();
+
+        Console.ForegroundColor = ConsoleColor.Gray; // Är det finare med Grått ist för MörkGrått
+        "Ange namn på Spelare 1\n-> ".EchoWrite();
+
         Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -46,62 +50,41 @@ class Program
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
     }
 
-    
+    public static void clearLowerScreen()
+    {
+        ("                                                                      ").CW(0, 15, "DarkGray");
+        ("                                                                      ").CW(0, 16, "DarkGray");
+        ("                                                                      ").CW(0, 17, "DarkGray");
+        ("                                                                      ").CW(0, 18, "DarkGray");
+        ("                                                                      ").CW(0, 19, "DarkGray");
+        ("                                                                      ").CW(0, 20, "DarkGray");
+        ("                                                                      ").CW(0, 21, "DarkGray");
+        ("                                                                      ").CW(0, 22, "DarkGray");
+        ("                                                                      ").CW(0, 23, "DarkGray");
+        ("                                                                      ").CW(0, 24, "DarkGray");
+        ("                                                                      ").CW(0, 25, "DarkGray"); 
+        ("                                                                      ").CW(0, 26, "DarkGray");
+    }
+
     public static void turnQueue()
     {
         if (whoseTurn == 0)
-        {
             whoWillStart();
-        }
         else
-        {
             whoseTurn++;
-        }
 
-        Console.ForegroundColor = ConsoleColor.DarkGray;
-
+        //Console.ForegroundColor = ConsoleColor.DarkGray; TODOMartin: Tror inte att denna raden används, ska tas bort sist av allat
         if (whoseTurn % 2 == 0)
         {
-            while (true)
-            {
-                ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
-                playerChoiceOfSquare = Console.ReadLine();
-                // TODOPlayer: det skulle vara snyggare om vi i stället skrev: Player1.PlaceMarker(playerChoiceOfSquare, Player1.Marker);
-                // Gå in i klassen Player och sök på "TODOPlayer" så hittar ni den motoden som egentligen skulle kalla på nedanstående rad
-
-                checkAgainstSquareArray = Convert.ToInt32(playerChoiceOfSquare) - 1;
-                if (MyBoard.SquareArray[checkAgainstSquareArray] == "X" || MyBoard.SquareArray[checkAgainstSquareArray] == "O")
-                {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                }
-                else
-                    break;
-            }
-            
-            MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player1.Marker);
-            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player1.Marker);
+            clearLowerScreen();
+            ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Green");
+            Player.InputSquareChoice(Player1.Marker);
         }
         else
         {
-            while (true)
-            {
-                ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "DarkGray");
-                playerChoiceOfSquare = Console.ReadLine();
-
-                checkAgainstSquareArray = Convert.ToInt32(playerChoiceOfSquare) - 1;
-                if (MyBoard.SquareArray[checkAgainstSquareArray] == "X" || MyBoard.SquareArray[checkAgainstSquareArray] == "O")
-                {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                }
-                else
-                    break;
-            }
-            MyBoard.ChangeMarkerOnBoardSquare(playerChoiceOfSquare, Player2.Marker);
-            MyBoard.ChangeValueOfBoardSquare(playerChoiceOfSquare, Player2.Marker);
+            clearLowerScreen();
+            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
+            Player.InputSquareChoice(Player2.Marker);
         }
 
         MyBoard.CheckWinner();

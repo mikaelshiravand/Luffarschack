@@ -6,6 +6,7 @@ public class Player
     public string Name;
     public int NumberOfWins;
     public string Marker;
+    public static string SquareOfChoice = "";
 
     public Player(string name, string marker)
     {
@@ -13,50 +14,36 @@ public class Player
         Marker = marker;
         NumberOfWins = 0;
     }
-
-    // TODOPlayer Denna metoden skulle helst kalla på ChangeValueOfBoardSquare i klassen Board.
-    public void PlaceMarker(string square, string X_or_O)
-    {
-        string marker = X_or_O;
-        string boardSquare = square;
-
-    }
-
-
-    // Mikael -> Martin
-    // ((Jag tror att detta kan funka...lol))
-    // Har börjat på en metod som kan ersätta stora delar av "den 100 rader långa metoden"
-    // Kan inte göra mer på denna eftersom det kommer in på ditt område
-    // Alltså får du testa om den fungerar eller inte.
-    public void Input()
-    {
-        string input = Console.ReadLine();
-        int number;
+   
+    public static void InputSquareChoice(string playerMarker)
+    { 
+        int localNumber;
         
         // Om inmatningen går att göra om till en int, och den är lika med eller mindre än 9, och det inte är en nolla händer detta:
-        if (int.TryParse(input, out number) && number <= 9 && number != 0)
+        while (true)
         {
-            
-            if () // Här ska du kolla att inamtningens plats INTE är upptagen
+            SquareOfChoice = Console.ReadLine(); // Detta är en string eftersom vi även skickar vidare "SquareOfChoice" in i andra metoder. 
+            if (int.TryParse(SquareOfChoice, out localNumber) && localNumber <= 9 && localNumber != 0)
             {
-                // Då ska du sätta spelarens markör på input platsen
+                if (Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "X" && Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "O") // Här ska du kolla att inamtningens plats INTE är upptagen, MN:Nu gör jag det
+                {
+                    Program.MyBoard.ChangeMarkerOnBoardSquare(SquareOfChoice, playerMarker);
+                    break; // Här är enda stället som vi går ur InputSquareChoice
+                }
+                else // Om den ÄR upptagen händer detta:
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                }
             }
-            else // Om den ÄR upptagen händer detta:
+            else // Om inmatningen är högre än nummer 9, eller om den är 0 eller om det är en/flera bokstav händer detta:
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
+                "Fel Inmatning. Försök igen!".EchoWriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkGray;
             }
-        }
-        else // Om inmatningen är högre än nummer 9, eller om den är 0 eller om det är en/flera bokstav händer detta:
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-            "Fel Inmatning. Försök igen!".EchoWriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-        }
-
-        
-                
-    }
-}
+        } // Slut på while(true)
+    } // Slut på playerInputSquareChoice
+} 
 
