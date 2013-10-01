@@ -29,7 +29,7 @@ public class Player
         while (true)
         {
             SquareOfChoice = Console.ReadLine(); // Detta är en string eftersom vi även skickar vidare "SquareOfChoice" in i andra metoder. 
-            if (int.TryParse(SquareOfChoice, out localNumber) && localNumber <= 9 && localNumber != 0)
+            if (int.TryParse(SquareOfChoice, out localNumber) && localNumber <= 9 && localNumber <= 0)
             {
                 if (Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "X" && Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "O") // Här ska du kolla att inamtningens plats INTE är upptagen, MN:Nu gör jag det
                 {
@@ -44,7 +44,7 @@ public class Player
                     //Console.ForegroundColor = ConsoleColor.DarkGray; TODOMN:Ta bort denna raden vid rensning av kod
                 }
             }
-            else // Om inmatningen är högre än nummer 9, eller om den är 0 eller om det är en/flera bokstav händer detta:
+            else // Om inmatningen är högre än nummer 9, eller om den är 0 (eller mindre, dvs negativt tal) eller om det är en/flera bokstav händer detta:
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 "Fel Inmatning. Försök igen!".EchoWriteLine();
