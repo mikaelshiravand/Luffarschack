@@ -29,7 +29,7 @@ public class Player
         while (true)
         {
             SquareOfChoice = Console.ReadLine(); // Detta är en string eftersom vi även skickar vidare "SquareOfChoice" in i andra metoder. 
-            if (int.TryParse(SquareOfChoice, out localNumber) && localNumber <= 9 && localNumber <= 0)
+            if (int.TryParse(SquareOfChoice, out localNumber) && localNumber <= 9 && localNumber > 0)
             {
                 if (Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "X" && Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "O") // Här ska du kolla att inamtningens plats INTE är upptagen, MN:Nu gör jag det
                 {
