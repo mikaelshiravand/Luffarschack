@@ -63,9 +63,19 @@ class Program
         blankRow.CW(0, 23, "DarkGray");
         blankRow.CW(0, 24, "DarkGray");
         blankRow.CW(0, 25, "DarkGray");
-        
-        
- 
+    }
+
+    public static string returnLastLetter(string playerName)
+    {
+        string x = "s";
+        string LastCharOfName = Convert.ToString(playerName[playerName.Length - 1]);
+
+        if (LastCharOfName == x)
+        {
+            x = "";
+        }
+
+        return x;
     }
 
     public static void turnQueue()
@@ -79,13 +89,13 @@ class Program
         if (whoseTurn % 2 == 0)
         {
             clearLowerScreen();
-            ("\nDet är " + Player1.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Green");
+            ("\nDet är " + Player1.Name + returnLastLetter(Player1.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Green");
             Player.InputSquareChoice(Player1.Marker);
         }
         else
         {
             clearLowerScreen();
-            ("\nDet är " + Player2.Name + "s tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
+            ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
             Player.InputSquareChoice(Player2.Marker);
         }
 
