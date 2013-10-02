@@ -50,18 +50,21 @@ class Program
 
     public static void clearLowerScreen()
     {
-        ("                                                                      ").CW(0, 15, "DarkGray");
-        ("                                                                      ").CW(0, 16, "DarkGray");
-        ("                                                                      ").CW(0, 17, "DarkGray");
-        ("                                                                      ").CW(0, 18, "DarkGray");
-        ("                                                                      ").CW(0, 19, "DarkGray");
-        ("                                                                      ").CW(0, 20, "DarkGray");
-        ("                                                                      ").CW(0, 21, "DarkGray");
-        ("                                                                      ").CW(0, 22, "DarkGray");
-        ("                                                                      ").CW(0, 23, "DarkGray");
-        ("                                                                      ").CW(0, 24, "DarkGray");
-        ("                                                                      ").CW(0, 25, "DarkGray"); 
-        ("                                                                      ").CW(0, 26, "DarkGray");
+        string blankRow = new string(' ', Console.WindowWidth);
+        blankRow.CW(0, 15, "DarkGray");
+        blankRow.CW(0, 16, "DarkGray");
+        blankRow.CW(0, 17, "DarkGray");
+        blankRow.CW(0, 18, "DarkGray");
+        blankRow.CW(0, 19, "DarkGray");
+        blankRow.CW(0, 20, "DarkGray");
+        blankRow.CW(0, 21, "DarkGray");
+        blankRow.CW(0, 22, "DarkGray");
+        blankRow.CW(0, 23, "DarkGray");
+        blankRow.CW(0, 24, "DarkGray");
+        blankRow.CW(0, 25, "DarkGray");
+        
+        
+ 
     }
 
     public static void turnQueue()
