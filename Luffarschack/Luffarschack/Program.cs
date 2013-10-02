@@ -38,13 +38,14 @@ class Program
         Console.ForegroundColor = ConsoleColor.Green;
         ("\t\t\t\tSpelare 1: " + Player1.Name).EchoWriteLine();
         ("\t\t\t\tAntal segrar: " + Player1.NumberOfWins).EchoWriteLine();
-        ("\t\t\t\tOavgjort: " + Player1.NoWin).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player1.Marker).EchoWriteLine();
-        ("\n\n").EchoWriteLine();
+        Console.ForegroundColor = ConsoleColor.Red;
+        ("\n").EchoWriteLine();
+        ("\t\t\t\tOavgjort:" + Player1.NoWin).EchoWriteLine();
+        ("\n").EchoWriteLine();
         Console.ForegroundColor = ConsoleColor.Blue;
         ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
         ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
-        ("\t\t\t\tOavgjort: " + Player2.NoWin).EchoWriteLine();
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
     }
 
@@ -93,7 +94,7 @@ class Program
         if (MyBoard.P1Win == true)
         {
             clearLowerScreen();
-            ("GRATTIS! " + Player1.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
+            ("\nGRATTIS! " + Player1.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
             Console.ReadKey();
             //Spelare1 vinner.
             Player1.NumberOfWins++;
@@ -104,7 +105,7 @@ class Program
         else if (MyBoard.P2Win == true)
         {
             clearLowerScreen();
-            ("GRATTIS! " + Player2.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
+            ("\nGRATTIS! " + Player2.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
             Console.ReadKey();
             //Spelare2 vinner.
             Player2.NumberOfWins++;
