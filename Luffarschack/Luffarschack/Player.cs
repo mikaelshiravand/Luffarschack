@@ -62,5 +62,13 @@ public class Player
             }
         } // Slut på while(true)
     } // Slut på playerInputSquareChoice
+
+    public void Player1Name(Player Player1)
+    {
+        Console.ForegroundColor = ConsoleColor.Gray;
+        "Ange namn på Spelare 1\n-> ".EchoWrite();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Player1.Name = Console.ReadLine();
+    }
 } 
 

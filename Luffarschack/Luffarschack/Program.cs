@@ -9,6 +9,8 @@ class Program
     public static Player Player2;
     public static int whoseTurn = 0;
     public static string playerChoiceOfSquare = "";
+    public static bool MultiPlayer = false;
+    public static int ComputerPlayer;
  
 
     static void programInfo()
@@ -21,16 +23,65 @@ class Program
     static void startMenu()
     {
         Console.ForegroundColor = ConsoleColor.White;
-        "Välkommen till TicTacToe!".EchoWriteLine();
-        Console.ForegroundColor = ConsoleColor.Gray;
-        "Ange namn på Spelare 1\n-> ".EchoWrite();
-        Console.ForegroundColor = ConsoleColor.Green;
-        Player1.Name = Console.ReadLine();
-        Console.ForegroundColor = ConsoleColor.Gray;
-        "Ange namn på Spelare 2\n-> ".EchoWrite();
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Player2.Name = Console.ReadLine();
+        "Välkommen till Grupp 4 TicTacToe!".CW(0, 0, "White");
+
+        Console.ForegroundColor = ConsoleColor.White;
+        
+        "1 : Spelare mot Spelare.".CW(0, 2, "Gray");
+        "2 : Spelare mot Linhs Datorspelare.".CW(0, 3, "Gray");
+        "3 : Spelare mot Martins Datorspelare.".CW(0, 4, "Gray");
+        "4 : Spelare mot Mikaels Datorspelare.".CW(0, 5, "Gray");
+        "5 : Spelare mot Rabihs Datorspelare.".CW(0, 6, "Gray");
+
+        "Vänligen välj spelläge: ".CW(0, 8, "White");
+        
+        string gameModeInput = Console.ReadLine();
+
+        if (gameModeInput == "1")
+        {
+            Player1.Player1Name(Player1);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            "Ange namn på Spelare 2\n-> ".EchoWrite();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Player2.Name = Console.ReadLine();
+            MultiPlayer = true;
+        }
+        else if (gameModeInput == "2")
+        {
+            Player1.Player1Name(Player1);
+            Player2.Name = "DatorLinh";
+            MultiPlayer = false;
+            ComputerPlayer = 1;
+        }
+        else if (gameModeInput == "3")
+        {
+            Player1.Player1Name(Player1);
+            Player2.Name = "DatorMartin";
+            MultiPlayer = false;
+            ComputerPlayer = 2;
+        }
+        else if (gameModeInput == "4")
+        {
+            Player1.Player1Name(Player1);
+            Player2.Name = "DatorMikael";
+            MultiPlayer = false;
+            ComputerPlayer = 3;
+        }
+        else if (gameModeInput == "5")
+        {
+            Player1.Player1Name(Player1);
+            Player2.Name = "DatorRabih";
+            MultiPlayer = false;
+            ComputerPlayer = 4;
+        }
+        else
+        {
+            Console.SetCursorPosition(0, 9);
+            "Fel Inmatning. Försök igen!".EchoWriteLine();
+            startMenu();
+        }
     }
+   
     public static void printInfoAboutPlayers()
     {
         Console.SetCursorPosition(3, 2);
@@ -94,10 +145,38 @@ class Program
         }
         else
         {
-            clearLowerScreen();
-            ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
-            Player.InputSquareChoice(Player2.Marker);
+            if (MultiPlayer == true)
+            {
+                clearLowerScreen();
+                ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
+                Player.InputSquareChoice(Player2.Marker);
+            }
+            else if (MultiPlayer == false)
+            {
+                clearLowerScreen();
+                ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur att välja en ruta, var god vänta.").CW(2, 15, "Blue");
+
+                // Här ska Datorspelarens drag göras (istället för en Console.ReadLine)
+
+                if(ComputerPlayer == 1) // Om det är Linhs Datorspelare
+                {
+                    // Kalla på er Datorspelarklass olika metoder
+                }
+                else if (ComputerPlayer == 2) // Om det är Martins Datorspelare
+                {
+                    // Kalla på er Datorspelarklass olika metoder
+                }
+                else if (ComputerPlayer == 3) // Om det är Mikaels Datorspelare
+                {
+                    // Kalla på er Datorspelarklass olika metoder
+                }
+                else if (ComputerPlayer == 4) // Om det är Rabihs Datorspelare
+                {
+                    // Kalla på er Datorspelarklass olika metoder
+                }
+            }
         }
+        
 
         MyBoard.CheckWinner();
 
