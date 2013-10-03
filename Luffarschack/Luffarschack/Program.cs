@@ -19,7 +19,7 @@ class Program
     static void startMenu()
     {
         Console.ForegroundColor = ConsoleColor.White;
-        "Välkommen till Grupp 4 TicTacToe!".CW(0, 0, "White");
+        "Välkommen till Grupp 4 TicTacToe!".CW(0, 0, "Yellow");
 
         Console.ForegroundColor = ConsoleColor.White;
 
@@ -36,6 +36,7 @@ class Program
 
         if (gameModeInput == "1")
         {
+            clearStartMenuScreen();
             Player1.Player1Name(Player1);
             Console.ForegroundColor = ConsoleColor.Gray;
             "Ange namn på Spelare 2\n-> ".EchoWrite();
@@ -45,6 +46,7 @@ class Program
         }
         else if (gameModeInput == "2")
         {
+            clearStartMenuScreen();
             Player1.Player1Name(Player1);
             Player2.Name = "DatorLinh";
             MultiPlayer = false;
@@ -52,6 +54,7 @@ class Program
         }
         else if (gameModeInput == "3")
         {
+            clearStartMenuScreen();
             Player1.Player1Name(Player1);
             Player2.Name = "DatorMartin";
             MultiPlayer = false;
@@ -59,6 +62,7 @@ class Program
         }
         else if (gameModeInput == "4")
         {
+            clearStartMenuScreen();
             Player1.Player1Name(Player1);
             Player2.Name = "DatorMikael";
             MultiPlayer = false;
@@ -66,6 +70,7 @@ class Program
         }
         else if (gameModeInput == "5")
         {
+            clearStartMenuScreen();
             Player1.Player1Name(Player1);
             Player2.Name = "DatorRabih";
             MultiPlayer = false;
@@ -73,6 +78,7 @@ class Program
         }
         else if (gameModeInput == "6")
         {
+            clearStartMenuScreen();
             Player1.Player1Name(Player1);
             Player2.Name = "Amatör-Örjan";
             MultiPlayer = false;
@@ -80,8 +86,10 @@ class Program
         }
         else
         {
-            Console.SetCursorPosition(0, 9);
-            "Fel Inmatning. Försök igen!".EchoWriteLine();
+            clearStartMenuScreen();
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.SetCursorPosition(24, 9);
+            "\nFel Inmatning. Försök igen!".EchoWriteLine();
             startMenu();
         }
     }
@@ -229,6 +237,14 @@ class Program
         ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
     }
 
+    public static void clearStartMenuScreen()
+    {
+        string blankRow = new string(' ', Console.WindowWidth);
+        blankRow.CW(24, 9, "DarkGray");
+        blankRow.CW(0, 10, "DarkGray");
+        blankRow.CW(0, 11, "DarkGray");
+
+    }
     public static void clearLowerScreen()
     {
         string blankRow = new string(' ', Console.WindowWidth);
