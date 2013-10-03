@@ -42,7 +42,7 @@ public class Board
         else
             localColor = "Blue";
 
-      
+
         if (square == "1" && SquareArray[0] == "1")
         {
             playerMarker.CW(6, 3, localColor);
@@ -92,7 +92,7 @@ public class Board
 
     public void ChangeValueOfBoardSquare(string square, string playerMarker)
     {
-        
+
         string boardsquare = square;
 
         if (square == "1" && SquareArray[0] == "1")

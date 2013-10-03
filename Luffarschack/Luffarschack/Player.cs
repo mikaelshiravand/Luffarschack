@@ -23,45 +23,45 @@ public class Player
         else
             Console.ForegroundColor = ConsoleColor.Blue;
     }
-    public static void InputSquareChoice(string playerMarker)
-    { 
+    public static void InputSquareChoice()
+    {
+        string fillRestOfLine = new string(' ', Console.WindowWidth - 3); // Jag skriver WindowWidth -3 eftersom vi på raden nedanför skriver ut på position x = 3
+        fillRestOfLine.CW(3, 17, "");
+        Console.SetCursorPosition(3, 17);
+        SquareOfChoice = Console.ReadLine(); // Detta är en string eftersom vi även skickar vidare "SquareOfChoice" in i andra metoder. 
+    }
+    public static void CheckIfSquareChoiceIsOk(string playerMarker, string localChoice)
+    {
         int localNumber;
-        
-        // Om inmatningen går att göra om till en int, och den är lika med eller mindre än 9, och det inte är en nolla händer detta:
-        while (true)
+        string fillRestOfLine = new string(' ', Console.WindowWidth - 3); // Jag skriver WindowWidth -3 eftersom vi på raden nedanför skriver ut på position x = 3
+
+        // Om inmatningen (som är SquareOfCoice från metoden InputSquareOfChoice) går att göra om till en int, och den är lika med eller mindre än 9, och det inte är en nolla händer detta:
+        if (int.TryParse(localChoice, out localNumber) && localNumber <= 9 && localNumber > 0)
         {
-            string fillRestOfLine = new string(' ', Console.WindowWidth -3); // Jag skriver WindowWidth -3 eftersom vi på raden nedanför skriver ut på position x = 3
-            fillRestOfLine.CW(3, 17, "");
-            Console.SetCursorPosition(3, 17);
-            SquareOfChoice = Console.ReadLine(); // Detta är en string eftersom vi även skickar vidare "SquareOfChoice" in i andra metoder. 
-            if (int.TryParse(SquareOfChoice, out localNumber) && localNumber <= 9 && localNumber > 0)
+            if (Program.MyBoard.SquareArray[Convert.ToInt32(localChoice) - 1] != "X" && Program.MyBoard.SquareArray[Convert.ToInt32(localChoice) - 1] != "O") // Här ska du kolla att inmatningens plats INTE är upptagen, MN:Nu gör jag det
             {
-                if (Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "X" && Program.MyBoard.SquareArray[Convert.ToInt32(SquareOfChoice) - 1] != "O") // Här ska du kolla att inmatningens plats INTE är upptagen, MN:Nu gör jag det
-                {
-                    Program.MyBoard.ChangeMarkerOnBoardSquare(SquareOfChoice, playerMarker);
-                    break; // Här är enda stället som vi går ur InputSquareChoice
-                }
-                else // Om den ÄR upptagen händer detta:
-                {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    fillRestOfLine.CW(0, 18, "");
-                    Console.SetCursorPosition(0, 18);
-                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
-                    setColorForCorrectingInput(playerMarker);
-                    //Console.ForegroundColor = ConsoleColor.DarkGray; TODOMN:Ta bort denna raden vid rensning av kod
-                }
+                Program.MyBoard.ChangeMarkerOnBoardSquare(localChoice, playerMarker);
+                Program.InputOk = true; // Här är enda stället som vi går ur while(InputOk == false) i Program
             }
-            else // Om inmatningen är högre än nummer 9, eller om den är 0 (eller mindre, dvs negativt tal) eller om det är en/flera bokstav händer detta:
+            else // Om den ÄR upptagen händer detta:
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 fillRestOfLine.CW(0, 18, "");
                 Console.SetCursorPosition(0, 18);
-                "Fel Inmatning. Försök igen!".EchoWriteLine();
+                "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
                 setColorForCorrectingInput(playerMarker);
-                //Console.ForegroundColor = ConsoleColor.DarkGray; TODOMN: Ta bort denna raden vid rensning av kod
             }
-        } // Slut på while(true)
-    } // Slut på playerInputSquareChoice
+        }
+        else // Om inmatningen är högre än nummer 9, eller om den är 0 (eller mindre, dvs negativt tal) eller om det är en/flera bokstav händer detta:
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            fillRestOfLine.CW(0, 18, "");
+            Console.SetCursorPosition(0, 18);
+            "Fel Inmatning. Försök igen!".EchoWriteLine();
+            setColorForCorrectingInput(playerMarker);
+        }
+
+    } // Slut på CheckIfSquareChoiceIsOk
 
     public void Player1Name(Player Player1)
     {
@@ -70,5 +70,5 @@ public class Player
         Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
     }
-} 
+}
 
