@@ -11,6 +11,7 @@ class Program
     public static string playerChoiceOfSquare = "";
     public static bool MultiPlayer = false;
     public static int ComputerPlayer;
+    public static ComputerMartin AiMartin;
  
 
     static void programInfo()
@@ -45,7 +46,7 @@ class Program
             Console.ForegroundColor = ConsoleColor.Blue;
             Player2.Name = Console.ReadLine();
             MultiPlayer = true;
-        }
+         }
         else if (gameModeInput == "2")
         {
             Player1.Player1Name(Player1);
@@ -164,7 +165,8 @@ class Program
                 }
                 else if (ComputerPlayer == 2) // Om det är Martins Datorspelare
                 {
-                    // Kalla på er Datorspelarklass olika metoder
+                    AiMartin.SquareOfChoice();
+                    
                 }
                 else if (ComputerPlayer == 3) // Om det är Mikaels Datorspelare
                 {
@@ -238,6 +240,8 @@ class Program
         Player1 = new Player("", "X");
         Player2 = new Player("", "O");
         MyBoard = new Board();
+        // Gör AiMartin till ett objekt för att kunna kalla på metoder i klassen ComputerMartin
+        AiMartin = new ComputerMartin("hej"); 
 
         startMenu();
         Console.Clear();
