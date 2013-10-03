@@ -138,9 +138,12 @@ class Program
                 }
                 else if (ComputerPlayer == 2) // Om det är Martins Datorspelare
                 {
-
-                    // Martin ska kalla på Metoder
-
+                    InputOk = false;
+                    while (InputOk == false)
+                    {
+                        ComputerMartin.InputSquareChoice();
+                        Player.CheckIfSquareChoiceIsOk(Player2.Marker, ComputerMartin.SquareOfChoice);
+                    }
                 }
                 else if (ComputerPlayer == 3) // Om det är Mikaels Datorspelare
                 {
@@ -265,12 +268,12 @@ class Program
     {
         (Player2.Name + " tänker, var god vänta.").CW(2, 15, "Cyan");
         Thread.Sleep(1000);
-        (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Cyan");
-        Thread.Sleep(1000);
-        (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Cyan");
-        Thread.Sleep(1000);
-        (Player2.Name + " tänker, var god vänta. . . .").CW(2, 15, "Cyan");
-        Thread.Sleep(1000);
+        //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Cyan");
+        //Thread.Sleep(1000);
+        //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Cyan");
+        //Thread.Sleep(1000);
+        //(Player2.Name + " tänker, var god vänta. . . .").CW(2, 15, "Cyan");
+        //Thread.Sleep(1000);
     }
     
     public static void whoWillStart()

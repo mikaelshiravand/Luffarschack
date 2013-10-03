@@ -8,25 +8,22 @@ using System.Threading.Tasks;
 public class ComputerMartin
 {
     // Properties
-    public string Name;
+    public static string SquareOfChoice = "";
 
     // Constructor
-    public ComputerMartin(string name)
+    public ComputerMartin()
     {
-        Name = name;
+
     }
 
     // Methods
-    public int SquareOfChoice()
+    public static void InputSquareChoice()
     {
         Random rand = new Random();
-        int outputSquare;
-            
-        // Slumpa ett tal mellan 1 och 9
-        outputSquare = rand.Next(1, 10);
-            
-        return outputSquare;
-    }   
+
+        // Slumpa ett tal mellan 1 och 9 och lagra i ComputerOrjans SquareOfChoice
+        SquareOfChoice = Convert.ToString(rand.Next(1, 10));
+    }
 
 }
 
