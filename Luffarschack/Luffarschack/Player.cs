@@ -3,12 +3,14 @@ using System.Collections.Generic;
 
 public class Player
 {
+    // Properties
     public string Name;
     public int NumberOfWins;
     public int NoWin;
     public string Marker;
     public static string SquareOfChoice = "";
 
+    // Constructor
     public Player(string name, string marker)
     {
         Name = name;
@@ -16,13 +18,8 @@ public class Player
         NumberOfWins = 0;
         NoWin = 0;
     }
-    public static void setColorForCorrectingInput(string playerMarker)
-    {
-        if (playerMarker == "X")
-            Console.ForegroundColor = ConsoleColor.Green;
-        else
-            Console.ForegroundColor = ConsoleColor.Blue;
-    }
+    
+    // Methods for Input and Controll of Input
     public static void InputSquareChoice()
     {
         string fillRestOfLine = new string(' ', Console.WindowWidth - 3); // Jag skriver WindowWidth -3 eftersom vi på raden nedanför skriver ut på position x = 3
@@ -63,6 +60,15 @@ public class Player
 
     } // Slut på CheckIfSquareChoiceIsOk
 
+    // Other methods
+    public static void setColorForCorrectingInput(string playerMarker)
+    {
+        if (playerMarker == "X")
+            Console.ForegroundColor = ConsoleColor.Green;
+        else
+            Console.ForegroundColor = ConsoleColor.Blue;
+    }
+    
     public void Player1Name(Player Player1)
     {
         Console.ForegroundColor = ConsoleColor.Gray;

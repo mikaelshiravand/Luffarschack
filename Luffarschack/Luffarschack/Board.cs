@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Board
 {
+    // Properties
     public string Name { get; set; }
     public string Layout { get; set; }
     public string[] SquareArray = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -10,30 +11,13 @@ public class Board
     public bool P2Win = false;
     public bool NoWin = false;
 
+    // Constructor
     public Board()
     {
 
     }
 
-    public void PrintBoard()
-    {
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.SetCursorPosition(0, 1);
-        "  ╔═══════╦═══════╦═══════╗\n".EchoWrite();
-        "  ║       ║       ║       ║\n".EchoWrite();
-        "  ║   1   ║   2   ║   3   ║\n".EchoWrite();
-        "  ║       ║       ║       ║\n".EchoWrite();
-        "  ╠═══════╬═══════╬═══════╣\n".EchoWrite();
-        "  ║       ║       ║       ║\n".EchoWrite();
-        "  ║   4   ║   5   ║   6   ║\n".EchoWrite();
-        "  ║       ║       ║       ║\n".EchoWrite();
-        "  ╠═══════╬═══════╬═══════╣\n".EchoWrite();
-        "  ║       ║       ║       ║\n".EchoWrite();
-        "  ║   7   ║   8   ║   9   ║\n".EchoWrite();
-        "  ║       ║       ║       ║\n".EchoWrite();
-        "  ╚═══════╩═══════╩═══════╝\n".EchoWrite();
-    }
-
+    // Methods used after every User- (or Computer) Input while playing
     public void ChangeMarkerOnBoardSquare(string square, string playerMarker)
     {
         string localColor = "";
@@ -214,6 +198,26 @@ public class Board
         {
             NoWin = true;
         }
+    }
+
+    // Methods used before a new game
+    public void PrintBoard()
+    {
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.SetCursorPosition(0, 1);
+        "  ╔═══════╦═══════╦═══════╗\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ║   1   ║   2   ║   3   ║\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ╠═══════╬═══════╬═══════╣\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ║   4   ║   5   ║   6   ║\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ╠═══════╬═══════╬═══════╣\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ║   7   ║   8   ║   9   ║\n".EchoWrite();
+        "  ║       ║       ║       ║\n".EchoWrite();
+        "  ╚═══════╩═══════╩═══════╝\n".EchoWrite();
     }
 
     public void ResetProperties()

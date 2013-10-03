@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 class Program
 {
@@ -14,14 +15,7 @@ class Program
     // Martin: Tror inte att ett objekt av ComputerOrjan behövs, som följer: public static ComputerOrjan AiOrjan; (sök på TODOMN (omkring rad 270) för mer info
     public static bool InputOk;
 
-
-    static void programInfo()
-    {
-        Console.BackgroundColor = ConsoleColor.Black;
-        Console.Clear();
-        Console.Title = "Grupp 4: Tic Tac Toe";
-        Console.SetWindowSize(80, 27);
-    }
+    // Methods for GamePlay
     static void startMenu()
     {
         Console.ForegroundColor = ConsoleColor.White;
@@ -92,53 +86,6 @@ class Program
         }
     }
 
-    public static void printInfoAboutPlayers()
-    {
-        Console.SetCursorPosition(3, 2);
-
-        Console.ForegroundColor = ConsoleColor.Green;
-        ("\t\t\t\tSpelare 1: " + Player1.Name).EchoWriteLine();
-        ("\t\t\t\tAntal segrar: " + Player1.NumberOfWins).EchoWriteLine();
-        ("\t\t\t\tSpelmarkör: " + Player1.Marker).EchoWriteLine();
-        Console.ForegroundColor = ConsoleColor.Red;
-        ("\n").EchoWriteLine();
-        ("\t\t\t\tOavgjort:" + Player1.NoWin).EchoWriteLine();
-        ("\n").EchoWriteLine();
-        Console.ForegroundColor = ConsoleColor.Blue;
-        ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
-        ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
-        ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
-    }
-
-    public static void clearLowerScreen()
-    {
-        string blankRow = new string(' ', Console.WindowWidth);
-        blankRow.CW(0, 15, "DarkGray");
-        blankRow.CW(0, 16, "DarkGray");
-        blankRow.CW(0, 17, "DarkGray");
-        blankRow.CW(0, 18, "DarkGray");
-        blankRow.CW(0, 19, "DarkGray");
-        blankRow.CW(0, 20, "DarkGray");
-        blankRow.CW(0, 21, "DarkGray");
-        blankRow.CW(0, 22, "DarkGray");
-        blankRow.CW(0, 23, "DarkGray");
-        blankRow.CW(0, 24, "DarkGray");
-        blankRow.CW(0, 25, "DarkGray");
-    }
-
-    public static string returnLastLetter(string playerName)
-    {
-        string x = "s";
-        string LastCharOfName = Convert.ToString(playerName[playerName.Length - 1]);
-
-        if (LastCharOfName == x)
-        {
-            x = "";
-        }
-
-        return x;
-    }
-
     public static void turnQueue()
     {
         if (whoseTurn == 0)
@@ -173,8 +120,8 @@ class Program
             else if (MultiPlayer == false)
             {
                 clearLowerScreen();
-                ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur att välja en ruta, var god vänta.").CW(2, 15, "Blue");
-
+                waitingForComputerPlayer();
+                
                 // Här ska Datorspelarens drag göras (istället för en Console.ReadLine)
 
                 if (ComputerPlayer == 1) // Om det är Linhs Datorspelare
@@ -247,13 +194,6 @@ class Program
 
     }
 
-    public static void whoWillStart()
-    {
-        Random rand = new Random();
-        //Martin: google verkar säga att man ska skriva .Next("lägsta talet", "högsta talet") men 3 verkar vara "mindre än 3"
-        whoseTurn = rand.Next(1, 3);
-    }
-
     public static void oneTurn()
     {
         while (MyBoard.P1Win == false || MyBoard.P2Win == false)
@@ -261,6 +201,86 @@ class Program
             turnQueue();
         }
     }
+    
+    // Helping methods
+    static void programInfo()
+    {
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.Clear();
+        Console.Title = "Grupp 4: Tic Tac Toe";
+        Console.SetWindowSize(80, 27);
+    }
+    
+    public static void printInfoAboutPlayers()
+    {
+        Console.SetCursorPosition(3, 2);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        ("\t\t\t\tSpelare 1: " + Player1.Name).EchoWriteLine();
+        ("\t\t\t\tAntal segrar: " + Player1.NumberOfWins).EchoWriteLine();
+        ("\t\t\t\tSpelmarkör: " + Player1.Marker).EchoWriteLine();
+        Console.ForegroundColor = ConsoleColor.Red;
+        ("\n").EchoWriteLine();
+        ("\t\t\t\tOavgjort:" + Player1.NoWin).EchoWriteLine();
+        ("\n").EchoWriteLine();
+        Console.ForegroundColor = ConsoleColor.Blue;
+        ("\t\t\t\tSpelare 2: " + Player2.Name).EchoWriteLine();
+        ("\t\t\t\tAntal segrar: " + Player2.NumberOfWins).EchoWriteLine();
+        ("\t\t\t\tSpelmarkör: " + Player2.Marker).EchoWriteLine();
+    }
+
+    public static void clearLowerScreen()
+    {
+        string blankRow = new string(' ', Console.WindowWidth);
+        blankRow.CW(0, 15, "DarkGray");
+        blankRow.CW(0, 16, "DarkGray");
+        blankRow.CW(0, 17, "DarkGray");
+        blankRow.CW(0, 18, "DarkGray");
+        blankRow.CW(0, 19, "DarkGray");
+        blankRow.CW(0, 20, "DarkGray");
+        blankRow.CW(0, 21, "DarkGray");
+        blankRow.CW(0, 22, "DarkGray");
+        blankRow.CW(0, 23, "DarkGray");
+        blankRow.CW(0, 24, "DarkGray");
+        blankRow.CW(0, 25, "DarkGray");
+    }
+
+    private static void waitingForComputerPlayer()
+    {
+        (Player2.Name + " tänker, var god vänta.").CW(2, 15, "Cyan");
+        Thread.Sleep(1000);
+        (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Cyan");
+        Thread.Sleep(1000);
+        (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Cyan");
+        Thread.Sleep(1000);
+        (Player2.Name + " tänker, var god vänta. . . .").CW(2, 15, "Cyan");
+        Thread.Sleep(1000);
+    }
+    
+    public static void whoWillStart()
+    {
+        Random rand = new Random();
+        //Martin: google verkar säga att man ska skriva .Next("lägsta talet", "högsta talet") men 3 verkar vara "mindre än 3"
+        whoseTurn = rand.Next(1, 3);
+    }
+
+    public static string returnLastLetter(string playerName)
+    {
+        string x = "s";
+        string LastCharOfName = Convert.ToString(playerName[playerName.Length - 1]);
+
+        if (LastCharOfName == x)
+        {
+            x = "";
+        }
+
+        return x;
+    }
+
+
+
+
+    // Main method
     static void Main()
     {
         programInfo();
@@ -277,5 +297,7 @@ class Program
         MyBoard.PrintBoard();
         oneTurn();
     }
+    
+   
 }
 
