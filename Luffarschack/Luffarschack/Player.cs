@@ -9,8 +9,8 @@ public class Player
     public int NoWin;
     public string Marker;
     public static string SquareOfChoice = "";
-
-    // Constructor
+    
+    // Constructors
     public Player(string name, string marker)
     {
         Name = name;
@@ -71,10 +71,19 @@ public class Player
     
     public void Player1Name(Player Player1)
     {
+        //Player1 = new Player("", "X"); //TODOMN:Kolla att detta blir rätt placerat här.
         Console.ForegroundColor = ConsoleColor.Gray;
         "Ange namn på Spelare 1\n-> ".EchoWrite();
         Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
+    }
+    public void Player2Name(Player Player2)
+    {
+        //Player2 = new Player("", "O"); //TODOMN:Kolla att detta blir rätt placerat här.
+        Console.ForegroundColor = ConsoleColor.Gray;
+        "Ange namn på Spelare 2\n-> ".EchoWrite();
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Player2.Name = Console.ReadLine();
     }
 }
 
