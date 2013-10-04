@@ -6,7 +6,7 @@ public class Board
     // Properties
     public string Name { get; set; }
     public string Layout { get; set; }
-    public string[] SquareArray = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+    public string[] SquareArray = { "0", "0", "0", "0", "0", "0", "0", "0", "0" };
     public bool P1Win = false;
     public bool P2Win = false;
     public bool NoWin = false;
@@ -27,47 +27,47 @@ public class Board
             localColor = "Blue";
 
 
-        if (square == "1" && SquareArray[0] == "1")
+        if (square == "1" && SquareArray[0] == "0")
         {
             playerMarker.CW(6, 3, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "2" && SquareArray[1] == "2")
+        else if (square == "2" && SquareArray[1] == "0")
         {
             playerMarker.CW(14, 3, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "3" && SquareArray[2] == "3")
+        else if (square == "3" && SquareArray[2] == "0")
         {
             playerMarker.CW(22, 3, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "4" && SquareArray[3] == "4")
+        else if (square == "4" && SquareArray[3] == "0")
         {
             playerMarker.CW(6, 7, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "5" && SquareArray[4] == "5")
+        else if (square == "5" && SquareArray[4] == "0")
         {
             playerMarker.CW(14, 7, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "6" && SquareArray[5] == "6")
+        else if (square == "6" && SquareArray[5] == "0")
         {
             playerMarker.CW(22, 7, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "7" && SquareArray[6] == "7")
+        else if (square == "7" && SquareArray[6] == "0")
         {
             playerMarker.CW(6, 11, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "8" && SquareArray[7] == "8")
+        else if (square == "8" && SquareArray[7] == "0")
         {
             playerMarker.CW(14, 11, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
         }
-        else if (square == "9" && SquareArray[8] == "9")
+        else if (square == "9" && SquareArray[8] == "0")
         {
             playerMarker.CW(22, 11, localColor);
             ChangeValueOfBoardSquare(square, playerMarker);
@@ -79,39 +79,39 @@ public class Board
 
         string boardsquare = square;
 
-        if (square == "1" && SquareArray[0] == "1")
+        if (square == "1" && SquareArray[0] == "0")
         {
             SquareArray[0] = playerMarker;
         }
-        else if (square == "2" && SquareArray[1] == "2")
+        else if (square == "2" && SquareArray[1] == "0")
         {
             SquareArray[1] = playerMarker;
         }
-        else if (square == "3" && SquareArray[2] == "3")
+        else if (square == "3" && SquareArray[2] == "0")
         {
             SquareArray[2] = playerMarker;
         }
-        else if (square == "4" && SquareArray[3] == "4")
+        else if (square == "4" && SquareArray[3] == "0")
         {
             SquareArray[3] = playerMarker;
         }
-        else if (square == "5" && SquareArray[4] == "5")
+        else if (square == "5" && SquareArray[4] == "0")
         {
             SquareArray[4] = playerMarker;
         }
-        else if (square == "6" && SquareArray[5] == "6")
+        else if (square == "6" && SquareArray[5] == "0")
         {
             SquareArray[5] = playerMarker;
         }
-        else if (square == "7" && SquareArray[6] == "7")
+        else if (square == "7" && SquareArray[6] == "0")
         {
             SquareArray[6] = playerMarker;
         }
-        else if (square == "8" && SquareArray[7] == "8")
+        else if (square == "8" && SquareArray[7] == "0")
         {
             SquareArray[7] = playerMarker;
         }
-        else if (square == "9" && SquareArray[8] == "9")
+        else if (square == "9" && SquareArray[8] == "0")
         {
             SquareArray[8] = playerMarker;
         }
@@ -186,15 +186,15 @@ public class Board
             P2Win = true;
         }
 
-        else if (SquareArray[0] != "1" &&
-            SquareArray[1] != "2" &&
-            SquareArray[2] != "3" &&
-            SquareArray[3] != "4" &&
-            SquareArray[4] != "5" &&
-            SquareArray[5] != "6" &&
-            SquareArray[6] != "7" &&
-            SquareArray[7] != "8" &&
-            SquareArray[8] != "9")
+        else if (SquareArray[0] != "0" &&
+            SquareArray[1] != "0" &&
+            SquareArray[2] != "0" &&
+            SquareArray[3] != "0" &&
+            SquareArray[4] != "0" &&
+            SquareArray[5] != "0" &&
+            SquareArray[6] != "0" &&
+            SquareArray[7] != "0" &&
+            SquareArray[8] != "0")
         {
             NoWin = true;
         }
@@ -226,15 +226,15 @@ public class Board
         P2Win = false;
         NoWin = false;
 
-        SquareArray[0] = "1";
-        SquareArray[1] = "2";
-        SquareArray[2] = "3";
-        SquareArray[3] = "4";
-        SquareArray[4] = "5";
-        SquareArray[5] = "6";
-        SquareArray[6] = "7";
-        SquareArray[7] = "8";
-        SquareArray[8] = "9";
+        SquareArray[0] = "0";
+        SquareArray[1] = "0";
+        SquareArray[2] = "0";
+        SquareArray[3] = "0";
+        SquareArray[4] = "0";
+        SquareArray[5] = "0";
+        SquareArray[6] = "0";
+        SquareArray[7] = "0";
+        SquareArray[8] = "0";
     }
 
     public void NewGame(Board MyBoard)

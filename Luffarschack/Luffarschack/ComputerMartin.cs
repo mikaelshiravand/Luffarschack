@@ -17,11 +17,11 @@ public class ComputerMartin
     }
 
     // Methods
-    public static void InputSquareChoice()
+    public static void InputSquareChoice(string marker)
     {
         Random rand = new Random();
 
-        // Slumpa ett tal mellan 1 och 9 och lagra i ComputerOrjans SquareOfChoice
+        // Slumpa ett tal mellan 1 och 9 och lagra i ComputerOrjan SquareOfChoice
         SquareOfChoice = Convert.ToString(rand.Next(1, 10));
     }
 

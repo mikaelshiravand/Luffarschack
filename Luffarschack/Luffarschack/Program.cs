@@ -217,7 +217,7 @@ class Program
             InputOk = false;
             while (InputOk == false)
             {
-                ComputerMartin.InputSquareChoice();
+                ComputerMartin.InputSquareChoice(playerMarker_XorO);
                 Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice);
             }
         }
