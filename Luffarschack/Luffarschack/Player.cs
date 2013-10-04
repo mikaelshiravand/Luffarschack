@@ -73,7 +73,7 @@ public class Player
     {
         //Player1 = new Player("", "X"); //TODOMN:Kolla att detta blir rätt placerat här.
         Console.ForegroundColor = ConsoleColor.Gray;
-        "Ange namn på Spelare 1\n-> ".EchoWrite();
+        "Ange namn på Spelare ett\n-> ".CW(0, 14, "Gray");
         Console.ForegroundColor = ConsoleColor.Green;
         Player1.Name = Console.ReadLine();
     }
@@ -81,7 +81,7 @@ public class Player
     {
         //Player2 = new Player("", "O"); //TODOMN:Kolla att detta blir rätt placerat här.
         Console.ForegroundColor = ConsoleColor.Gray;
-        "Ange namn på Spelare 2\n-> ".EchoWrite();
+        "Ange namn på Spelare två\n-> ".CW(0, 16, "Gray");
         Console.ForegroundColor = ConsoleColor.Blue;
         Player2.Name = Console.ReadLine();
     }

@@ -15,12 +15,12 @@ class Program
     public static int ComputerPlayer;
     // Martin: Tror inte att ett objekt av ComputerOrjan behövs, som följer: public static ComputerOrjan AiOrjan; (sök på TODOMN (omkring rad 270) för mer info
     public static bool InputOk;
+    public static string fillLine = new string(' ', Console.WindowWidth); // För att radera felaktiga inmatningar av användaren
 
-    // Methods for GamePlay
-    
-   
+    // Methods
     static void startMenu()
     {
+        
         Console.ForegroundColor = ConsoleColor.White;
         "Välkommen till Grupp 4 TicTacToe!".CW(0, 0, "Yellow");
 
@@ -33,12 +33,25 @@ class Program
         "5 : Rabihs Datorspelare.".CW(0, 6, "Gray");
         "6 : Amatör-Örjans Datorspelare.".CW(0, 7, "Gray");
 
-        while (true)
+        startMenu_CreatePlayer1();
+        startMenu_CreatePlayer2();
+        
+        "Spelarna är valda, tryck på valfri tangent för att börja spela!".CW(0, 20, "Yellow");
+        Console.ReadKey();
+    } 
+
+    // Methods to startMenu()
+    static void startMenu_CreatePlayer1()
+    {
+        while (true) // Börjar loop för att skapa spelare ett
         {
-            "Välj Player 1: ".CW(0, 9, "White");
+            fillLine.CW(0, 9, "");
+            "Välj Spelare ett: ".CW(0, 9, "Green");
+            Console.ForegroundColor = ConsoleColor.Gray;
             string Play1 = Console.ReadLine();
             if (Play1 == "1")
             {
+                fillLine.CW(0, 10, "");
                 Player1Human = true;
                 Player1.Player1Name(Player1);
                 break;
@@ -53,13 +66,18 @@ class Program
                 checkInputInStartMenu();
             }
         }// avslutar while(true) för att göra spelare 1
-
-        while (true)
+    }
+    static void startMenu_CreatePlayer2()
+    {
+        while (true) // Börjar loop för att skapa spelare två
         {
-            "Välj Player 2: ".CW(0, 9, "White");
+            fillLine.CW(0, 9, "");
+            "Välj Spelare två: ".CW(0, 9, "Blue");
+            Console.ForegroundColor = ConsoleColor.Gray;
             string Play2 = Console.ReadLine();
             if (Play2 == "1")
             {
+                fillLine.CW(0, 10, "");
                 Player2Human = true;
                 Player2.Player2Name(Player2); //TODOMN:Denna kanske bara funkar om Player görs först i main
                 break;
@@ -73,9 +91,10 @@ class Program
             {
                 checkInputInStartMenu();
             }
-        } // avslutar while(true) för att göra spelare 2
-    } // avslutar hela startMenu()
+        } // avslutar while(true) för att göra spelare 2}
+    }
 
+    // Methods for GamePlay
     public static void turnQueue()
     {
         if (whoseTurn == 0)
@@ -84,86 +103,98 @@ class Program
             whoseTurn++;
 
         if (whoseTurn % 2 == 0) // Om whosTurn faller på spelare1 
-        {
-            if (Player1Human == true)
-            {
-                clearLowerScreen();
-                ("\nDet är " + Player1.Name + returnLastLetter(Player1.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Green");
-                InputOk = false;
-                while (InputOk == false)
-                {
-                    Player.InputSquareChoice();
-                    Player.CheckIfSquareChoiceIsOk(Player1.Marker, Player.SquareOfChoice);
-                }
-            }
-            else
-            {
-                clearLowerScreen();
-                waitingForComputerPlayer(1);
-                computerPlayerMove(Player1.Marker);
-            }
-        } // Avslutar om whoseTurn är på spelare1
+            playerOneIsinTurn();
 
         else // Om whosTurn faller på spelare2
-        {
-            if (Player2Human == true) 
-            {
-                clearLowerScreen();
-                ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
-                InputOk = false;
-                while (InputOk == false)
-                {
-                    Player.InputSquareChoice();
-                    Player.CheckIfSquareChoiceIsOk(Player2.Marker, Player.SquareOfChoice);
-                }
-            }
-            else
-            {
-                clearLowerScreen();
-                waitingForComputerPlayer(2);
-                computerPlayerMove(Player2.Marker);
-            }
-        }// Avslutar om whoseTurn är på spelare2
+            playerTwoIsinTurn();
 
         MyBoard.CheckWinner();
 
         if (MyBoard.P1Win == true)
-        {
-            clearLowerScreen();
-            ("\nGRATTIS! " + Player1.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
-            Console.ReadKey();
-            //Spelare1 vinner.
-            Player1.NumberOfWins++;
-            // Supersnygg mini-metod istället för megastor copypaste
-            MyBoard.NewGame(MyBoard);
-        }
+            MyBoardP1Win();
 
         else if (MyBoard.P2Win == true)
-        {
-            clearLowerScreen();
-            ("\nGRATTIS! " + Player2.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
-            Console.ReadKey();
-            //Spelare2 vinner.
-            Player2.NumberOfWins++;
-            // Supersnygg mini-metod istället för megastor copypaste
-            MyBoard.NewGame(MyBoard);
-        }
+            MyBoardP2Win();
 
         else if (MyBoard.NoWin == true)
-        {
-            // Martin: Denna raden behövs nog inte.....Console.ForegroundColor = ConsoleColor.Yellow;
-            clearLowerScreen();
-            ("\nOAVGJORT!" +
-            "\nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Red");
-            Console.ReadKey();
-            // Ingen vinner.
-            Player1.NoWin++;
-            Player2.NoWin++;
-            // Supersnygg mini-metod istället för megastor copypaste
-            MyBoard.NewGame(MyBoard);
-        }
+            MyBoardNoWin();
 
     }
+    // Methods called in turnQueue();
+    public static void playerOneIsinTurn()
+    {
+        if (Player1Human == true)
+        {
+            clearLowerScreen();
+            ("\nDet är " + Player1.Name + returnLastLetter(Player1.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Green");
+            InputOk = false;
+            while (InputOk == false)
+            {
+                Player.InputSquareChoice();
+                Player.CheckIfSquareChoiceIsOk(Player1.Marker, Player.SquareOfChoice);
+            }
+        }
+        else
+        {
+            clearLowerScreen();
+            waitingForComputerPlayer(1);
+            computerPlayerMove(Player1.Marker);
+        }
+    }
+    public static void playerTwoIsinTurn()
+    {
+        if (Player2Human == true)
+        {
+            clearLowerScreen();
+            ("\nDet är " + Player2.Name + returnLastLetter(Player2.Name) + " tur, välj ruta och tryck ENTER\n-> ").CW(2, 15, "Blue");
+            InputOk = false;
+            while (InputOk == false)
+            {
+                Player.InputSquareChoice();
+                Player.CheckIfSquareChoiceIsOk(Player2.Marker, Player.SquareOfChoice);
+            }
+        }
+        else
+        {
+            clearLowerScreen();
+            waitingForComputerPlayer(2);
+            computerPlayerMove(Player2.Marker);
+        }
+    }
+    public static void MyBoardP1Win()
+    {
+        clearLowerScreen();
+        ("\nGRATTIS! " + Player1.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
+        Console.ReadKey();
+        //Spelare1 vinner.
+        Player1.NumberOfWins++;
+        // Supersnygg mini-metod istället för megastor copypaste
+        MyBoard.NewGame(MyBoard);
+    }
+    public static void MyBoardP2Win()
+    {
+        clearLowerScreen();
+        ("\nGRATTIS! " + Player2.Name + " vann! \nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Yellow");
+        Console.ReadKey();
+        //Spelare2 vinner.
+        Player2.NumberOfWins++;
+        // Supersnygg mini-metod istället för megastor copypaste
+        MyBoard.NewGame(MyBoard);
+    }
+    public static void MyBoardNoWin()
+    {
+        // Martin: Denna raden behövs nog inte.....Console.ForegroundColor = ConsoleColor.Yellow;
+        clearLowerScreen();
+        ("\nOAVGJORT!" +
+        "\nTryck ENTER för nästa spel.\n-> ").CW(2, 15, "Red");
+        Console.ReadKey();
+        // Ingen vinner.
+        Player1.NoWin++;
+        Player2.NoWin++;
+        // Supersnygg mini-metod istället för megastor copypaste
+        MyBoard.NewGame(MyBoard);
+    }
+    
 
     public static void oneTurn()
     {
@@ -174,13 +205,14 @@ class Program
     }
 
 
+    // Methods used when a computer i playing
     static void computerPlayerMove(string playerMarker_XorO)
     {
-        if (ComputerPlayer == 1) // Om det är Linhs Datorspelare
+        if ((Player1.Name == "DatorLinh" && playerMarker_XorO == "X") || (Player2.Name == "DatorLinh" && playerMarker_XorO == "O")) // Om det är Linhs Datorspelare
         {
             // Kalla på er Datorspelarklass olika metoder
         }
-        else if (ComputerPlayer == 2) // Om det är Martins Datorspelare
+        else if ((Player1.Name == "DatorMartin" && playerMarker_XorO == "X") || (Player2.Name == "DatorMartin" && playerMarker_XorO == "O")) // Om det är Martins Datorspelare
         {
             InputOk = false;
             while (InputOk == false)
@@ -189,15 +221,15 @@ class Program
                 Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice);
             }
         }
-        else if (ComputerPlayer == 3) // Om det är Mikaels Datorspelare
+        else if ((Player1.Name == "DatorMikael" && playerMarker_XorO == "X") || (Player2.Name == "DatorMikael" && playerMarker_XorO == "O")) // Om det är Mikaels Datorspelare
         {
             // Kalla på er Datorspelarklass olika metoder
         }
-        else if (ComputerPlayer == 4) // Om det är Rabihs Datorspelare
+        else if ((Player1.Name == "DatorRabih" && playerMarker_XorO == "X") || (Player2.Name == "DatorRabih" && playerMarker_XorO == "O")) // Om det är Rabihs Datorspelare
         {
             // Kalla på er Datorspelarklass olika metoder
         }
-        else if (ComputerPlayer == 5) // Om det är Amatör-Örjans Datorspelare
+        else if ((Player1.Name == "DatorÖrjan" && playerMarker_XorO == "X") || (Player2.Name == "DatorÖrjan" && playerMarker_XorO == "O")) // Om det är Amatör-Örjans Datorspelare
         {
             InputOk = false;
             while (InputOk == false)
@@ -213,27 +245,35 @@ class Program
         if (number == "2")
         {
             Player1.Name = "DatorLinh";
-            ComputerPlayer = 1;
+            ComputerPlayer = 1; // Martin: Från och med 4/10 kl 11.45 använder vi inte ComputerPlayer längre 
+            //eftersom vi fick en bug -> om spelare 1 var en dator så ersattes värdet om spelare också var en dator.
+            //Fick till följd att bägge datorspelarna använde sig av den ene ai:s intelligens.
+            //Jag löste det genom att gå på "Player1.Name" i stället, kombinerat med spelarens marker X eller O
+            printPlayer1Name();
         }
         else if (number == "3")
         {
             Player1.Name = "DatorMartin";
             ComputerPlayer = 2;
+            printPlayer1Name();
         }
         else if (number == "4")
         {
             Player1.Name = "DatorMikael";
             ComputerPlayer = 3;
+            printPlayer1Name();
         }
         else if (number == "5")
         {
             Player1.Name = "DatorRabih";
             ComputerPlayer = 4;
+            printPlayer1Name();
         }
         else if (number == "6")
         {
             Player1.Name = "DatorÖrjan";
             ComputerPlayer = 5;
+            printPlayer1Name();
         }
     }
     static void createComputerPlayer2(string number)
@@ -243,38 +283,56 @@ class Program
         {
             Player2.Name = "DatorLinh";
             ComputerPlayer = 1;
+            printPlayer2Name();
         }
         else if (number == "3")
         {
             Player2.Name = "DatorMartin";
             ComputerPlayer = 2;
+            printPlayer2Name();
         }
         else if (number == "4")
         {
             Player2.Name = "DatorMikael";
             ComputerPlayer = 3;
+            printPlayer2Name();
         }
         else if (number == "5")
         {
             Player2.Name = "DatorRabih";
             ComputerPlayer = 4;
+            printPlayer2Name();
         }
         else if (number == "6")
         {
             Player2.Name = "DatorÖrjan";
             ComputerPlayer = 5;
+            printPlayer2Name();
         }
 
     }
+    static void printPlayer1Name()
+    {
+        ("Spelare ett heter").CW(0, 14, "Gray");
+        "->".CW(0, 15, "Gray");
+        (Player1.Name).CW(3, 15, "Green");
+    }
+    static void printPlayer2Name()
+    {
+        ("Spelare två heter").CW(0, 16, "Gray");
+        "->".CW(0, 17, "Gray");
+        (Player2.Name).CW(3, 17, "Blue");
+    }
+   
 
     // Helping methods
     static void checkInputInStartMenu()
     {
         clearStartMenuScreen();
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.ForegroundColor = ConsoleColor.White;
         Console.SetCursorPosition(24, 9);
-        "\nFel Inmatning. Försök igen!".EchoWriteLine();
-        startMenu();
+        "\nFel Inmatning. Försök igen! (Ange ett nummer mellan 1-6) ".EchoWriteLine();
+        //TODOMN Ta bort denna rad startMenu();
     }
 
     static void programInfo()
@@ -372,8 +430,6 @@ class Program
 
         return x;
     }
-
-
 
 
     // Main method
