@@ -23,9 +23,8 @@ class Program
         Console.ForegroundColor = ConsoleColor.White;
 
         "1 : Människa.".CW(0, 2, "Gray");
-        "2 : Linhs Datorspelare.".CW(0, 3, "Gray");
-        "3 : Martins Datorspelare.".CW(0, 4, "Gray");
-        "4 : Amatör-Örjans Datorspelare.".CW(0, 5, "Gray");
+        "2 : Martins Datorspelare.".CW(0, 3, "Gray");
+        "3 : Amatör-Örjans Datorspelare.".CW(0, 4, "Gray");
 
         startMenu_CreatePlayer1();
         startMenu_CreatePlayer2();
@@ -50,7 +49,7 @@ class Program
                 Player1.Player1Name(Player1);
                 break;
             }
-            else if (Play1 == "2" || Play1 == "3" || Play1 == "4")
+            else if (Play1 == "2" || Play1 == "3")
             {
                 createComputerPlayer1(Play1);
                 break;
@@ -76,7 +75,7 @@ class Program
                 Player2.Player2Name(Player2);
                 break;
             }
-            else if (Play2 == "2" || Play2 == "3" || Play2 == "4")
+            else if (Play2 == "2" || Play2 == "3")
             {
                 createComputerPlayer2(Play2);
                 break;
@@ -200,11 +199,7 @@ class Program
     // Methods used when a computer i playing
     static void computerPlayerMove(string playerMarker_XorO)
     {
-        if ((Player1.Name == "DatorLinh" && playerMarker_XorO == "X") || (Player2.Name == "DatorLinh" && playerMarker_XorO == "O")) // Om det är Linhs Datorspelare
-        {
-            // Kalla på er Datorspelarklass olika metoder
-        }
-        else if ((Player1.Name == "DatorMartin" && playerMarker_XorO == "X") || (Player2.Name == "DatorMartin" && playerMarker_XorO == "O")) // Om det är Martins Datorspelare
+        if ((Player1.Name == "DatorMartin" && playerMarker_XorO == "X") || (Player2.Name == "DatorMartin" && playerMarker_XorO == "O")) // Om det är Martins Datorspelare
         {
             InputOk = false;
             while (InputOk == false)
@@ -230,23 +225,14 @@ class Program
         clearStartMenuScreen();
         if (number == "2")
         {
-            Player1.Name = "DatorLinh";
-            ComputerPlayer = 1; // Martin: Från och med 4/10 kl 11.45 använder vi inte ComputerPlayer längre 
-            //eftersom vi fick en bug -> om spelare 1 var en dator så ersattes värdet om spelare också var en dator.
-            //Fick till följd att bägge datorspelarna använde sig av den ene ai:s intelligens.
-            //Jag löste det genom att gå på "Player1.Name" i stället, kombinerat med spelarens marker X eller O
-            printPlayer1Name();
-        }
-        else if (number == "3")
-        {
             Player1.Name = "DatorMartin";
             ComputerPlayer = 2;
             printPlayer1Name();
         }
-        else if (number == "4")
+        else if (number == "3")
         {
             Player1.Name = "DatorÖrjan";
-            ComputerPlayer = 5;
+            ComputerPlayer = 3;
             printPlayer1Name();
         }
     }
@@ -255,20 +241,14 @@ class Program
         clearStartMenuScreen();
         if (number == "2")
         {
-            Player2.Name = "DatorLinh";
-            ComputerPlayer = 1;
-            printPlayer2Name();
-        }
-        else if (number == "3")
-        {
             Player2.Name = "DatorMartin";
             ComputerPlayer = 2;
             printPlayer2Name();
         }
-        else if (number == "4")
+        else if (number == "3")
         {
             Player2.Name = "DatorÖrjan";
-            ComputerPlayer = 5;
+            ComputerPlayer = 3;
             printPlayer2Name();
         }
 
@@ -293,7 +273,7 @@ class Program
         clearStartMenuScreen();
         Console.ForegroundColor = ConsoleColor.White;
         Console.SetCursorPosition(24, 9);
-        "\nFel Inmatning. Försök igen! (Ange ett nummer mellan 1-4) ".EchoWriteLine();
+        "\nFel Inmatning. Försök igen! (Ange ett nummer mellan 1-3) ".EchoWriteLine();
     }
 
     static void programInfo()

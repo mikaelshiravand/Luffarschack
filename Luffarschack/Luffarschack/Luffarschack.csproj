@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="ComputerLinh.cs" />
     <Compile Include="ComputerMartin.cs" />
     <Compile Include="ComputerOrjan.cs" />
     <Compile Include="Extensions.cs" />
