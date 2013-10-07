@@ -391,23 +391,20 @@ class Program
         {
             (Player1.Name + " tänker, var god vänta.").CW(2, 15, "Green");
             Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. . . .").CW(2, 15, "Green");
-            //Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
+            Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
+            Thread.Sleep(1000);
+           
         }
         if (Player1or2 == 2)
         {
-            (Player2.Name + " tänker, var god vänta.").CW(2, 15, "Cyan");
+            (Player2.Name + " tänker, var god vänta.").CW(2, 15, "Blue");
             Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Cyan");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Cyan");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. . . .").CW(2, 15, "Cyan");
-            //Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Blue");
+            Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Blue");
+            Thread.Sleep(1000);  
         }
     }
     
