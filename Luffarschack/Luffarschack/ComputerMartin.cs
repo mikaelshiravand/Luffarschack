@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class ComputerMartin
+public class ComputerMartin : Player
 {
     // Properties
-    public static string SquareOfChoice = "";
 
     // Constructor
     public ComputerMartin()
@@ -17,7 +16,7 @@ public class ComputerMartin
     }
 
     // Methods
-    public static void InputSquareChoice(string marker)
+    public static void ComInputSquareChoice(string marker)
     {
         Random rand = new Random();
 

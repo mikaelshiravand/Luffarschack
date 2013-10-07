@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class ComputerOrjan
+public class ComputerOrjan : Player
 {
     // Properties
-    public static string SquareOfChoice = "";
 
     // Constructor
     public ComputerOrjan()
@@ -17,7 +16,7 @@ public class ComputerOrjan
     }
 
     // Methods
-    public static void InputSquareChoice()
+    public static void ComInputSquareChoice()
     {
         Random rand = new Random();
 

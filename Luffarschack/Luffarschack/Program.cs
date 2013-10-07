@@ -18,8 +18,6 @@ class Program
     // Methods
     static void startMenu()
     {
-        
-        Console.ForegroundColor = ConsoleColor.White;
         "Välkommen till Grupp 4 TicTacToe!".CW(0, 0, "Yellow");
 
         Console.ForegroundColor = ConsoleColor.White;
@@ -199,7 +197,6 @@ class Program
         }
     }
 
-
     // Methods used when a computer i playing
     static void computerPlayerMove(string playerMarker_XorO)
     {
@@ -213,7 +210,7 @@ class Program
             while (InputOk == false)
             {
                 bool sendFalse = false; // Behövs för att skicka falskt till CheckIfSquareChoiceIsOk()
-                ComputerMartin.InputSquareChoice(playerMarker_XorO);
+                ComputerMartin.ComInputSquareChoice(playerMarker_XorO);
                 Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice, sendFalse);
             }
         }
@@ -223,7 +220,7 @@ class Program
             while (InputOk == false)
             {
                 bool sendFalse = false; // Se 10 rader upp i koden
-                ComputerOrjan.InputSquareChoice();
+                ComputerOrjan.ComInputSquareChoice();
                 Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerOrjan.SquareOfChoice, sendFalse);
             }
         }
@@ -355,9 +352,9 @@ class Program
         {
             (Player1.Name + " tänker, var god vänta.").CW(2, 15, "Green");
             Thread.Sleep(1000);
-            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
+            (Player1.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
             Thread.Sleep(1000);
-            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
+            (Player1.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
             Thread.Sleep(1000);
            
         }

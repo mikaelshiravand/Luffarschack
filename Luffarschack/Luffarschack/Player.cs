@@ -18,6 +18,10 @@ public class Player
         NumberOfWins = 0;
         NoWin = 0;
     }
+    public Player()
+    { 
+        //If making a computerPlayer
+    }
     
     // Methods for Input and Controll of Input
     public static void InputSquareChoice()
