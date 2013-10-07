@@ -4,21 +4,13 @@ using System.Collections.Generic;
 public class Board
 {
     // Properties
-    public string Name { get; set; }
-    public string Layout { get; set; }
     public string[] SquareArray = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     public bool P1Win = false;
     public bool P2Win = false;
     public bool NoWin = false;
-
-    // Constructor
-    public Board()
-    {
-
-    }
-
-    // Methods used after every User- (or Computer) Input while playing
-    public void ChangeMarkerOnBoardSquare(string square, string playerMarker)
+    
+    // Methods
+    public void ChangeValueAndMarker(string square, string playerMarker)
     {
         string localColor = "";
         if (playerMarker == "X")
@@ -26,93 +18,49 @@ public class Board
         else
             localColor = "Blue";
 
-
         if (square == "1" && SquareArray[0] == "1")
         {
             playerMarker.CW(6, 3, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "2" && SquareArray[1] == "2")
-        {
-            playerMarker.CW(14, 3, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "3" && SquareArray[2] == "3")
-        {
-            playerMarker.CW(22, 3, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "4" && SquareArray[3] == "4")
-        {
-            playerMarker.CW(6, 7, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "5" && SquareArray[4] == "5")
-        {
-            playerMarker.CW(14, 7, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "6" && SquareArray[5] == "6")
-        {
-            playerMarker.CW(22, 7, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "7" && SquareArray[6] == "7")
-        {
-            playerMarker.CW(6, 11, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "8" && SquareArray[7] == "8")
-        {
-            playerMarker.CW(14, 11, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-        else if (square == "9" && SquareArray[8] == "9")
-        {
-            playerMarker.CW(22, 11, localColor);
-            ChangeValueOfBoardSquare(square, playerMarker);
-        }
-    }
-
-    public void ChangeValueOfBoardSquare(string square, string playerMarker)
-    {
-
-        string boardsquare = square;
-
-        if (square == "1" && SquareArray[0] == "1")
-        {
             SquareArray[0] = playerMarker;
         }
         else if (square == "2" && SquareArray[1] == "2")
         {
+            playerMarker.CW(14, 3, localColor);
             SquareArray[1] = playerMarker;
         }
         else if (square == "3" && SquareArray[2] == "3")
         {
+            playerMarker.CW(22, 3, localColor);
             SquareArray[2] = playerMarker;
         }
         else if (square == "4" && SquareArray[3] == "4")
         {
+            playerMarker.CW(6, 7, localColor);
             SquareArray[3] = playerMarker;
         }
         else if (square == "5" && SquareArray[4] == "5")
         {
+            playerMarker.CW(14, 7, localColor);
             SquareArray[4] = playerMarker;
         }
         else if (square == "6" && SquareArray[5] == "6")
         {
+            playerMarker.CW(22, 7, localColor);
             SquareArray[5] = playerMarker;
         }
         else if (square == "7" && SquareArray[6] == "7")
         {
+            playerMarker.CW(6, 11, localColor);
             SquareArray[6] = playerMarker;
         }
         else if (square == "8" && SquareArray[7] == "8")
         {
+            playerMarker.CW(14, 11, localColor);
             SquareArray[7] = playerMarker;
         }
         else if (square == "9" && SquareArray[8] == "9")
         {
+            playerMarker.CW(22, 11, localColor);
             SquareArray[8] = playerMarker;
         }
     }
@@ -200,7 +148,6 @@ public class Board
         }
     }
 
-    // Methods used before a new game
     public void PrintBoard()
     {
         Console.ForegroundColor = ConsoleColor.White;
@@ -240,9 +187,9 @@ public class Board
     public void NewGame(Board MyBoard)
     {
         Console.Clear();
-        Program.printInfoAboutPlayers();
+        Program.PrintInfoAboutPlayers();
         MyBoard.PrintBoard();
         MyBoard.ResetProperties();
-        Program.oneTurn();
+        Program.TurnOne();
     }
 }
