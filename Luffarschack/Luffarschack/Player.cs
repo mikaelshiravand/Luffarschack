@@ -27,7 +27,7 @@ public class Player
         Console.SetCursorPosition(3, 17);
         SquareOfChoice = Console.ReadLine(); // Detta är en string eftersom vi även skickar vidare "SquareOfChoice" in i andra metoder. 
     }
-    public static void CheckIfSquareChoiceIsOk(string playerMarker, string localChoice)
+    public static void CheckIfSquareChoiceIsOk(string playerMarker, string localChoice, bool isHuman)
     {
         int localNumber;
         string fillRestOfLine = new string(' ', Console.WindowWidth - 3); // Jag skriver WindowWidth -3 eftersom vi på raden nedanför skriver ut på position x = 3
@@ -44,8 +44,11 @@ public class Player
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 fillRestOfLine.CW(0, 18, "");
-                Console.SetCursorPosition(0, 18);
-                "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
+                if (isHuman == true)
+                {
+                    Console.SetCursorPosition(0, 18);
+                    "Du kan inte sätta din markör på en upptagen ruta. Försök igen!".EchoWriteLine();
+                }
                 setColorForCorrectingInput(playerMarker);
             }
         }

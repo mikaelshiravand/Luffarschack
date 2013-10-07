@@ -29,7 +29,7 @@ class Program
         "1 : Människa.".CW(0, 2, "Gray");
         "2 : Linhs Datorspelare.".CW(0, 3, "Gray");
         "3 : Martins Datorspelare.".CW(0, 4, "Gray");
-        "4 : Mikaels Datorspelare.".CW(0, 5, "Gray");
+        "4 : Amatör-Örjans Datorspelare.".CW(0, 5, "Gray");
 
         startMenu_CreatePlayer1();
         startMenu_CreatePlayer2();
@@ -129,7 +129,7 @@ class Program
             while (InputOk == false)
             {
                 Player.InputSquareChoice();
-                Player.CheckIfSquareChoiceIsOk(Player1.Marker, Player.SquareOfChoice);
+                Player.CheckIfSquareChoiceIsOk(Player1.Marker, Player.SquareOfChoice, Player1Human);
             }
         }
         else
@@ -149,7 +149,7 @@ class Program
             while (InputOk == false)
             {
                 Player.InputSquareChoice();
-                Player.CheckIfSquareChoiceIsOk(Player2.Marker, Player.SquareOfChoice);
+                Player.CheckIfSquareChoiceIsOk(Player2.Marker, Player.SquareOfChoice, Player2Human);
             }
         }
         else
@@ -214,8 +214,9 @@ class Program
             InputOk = false;
             while (InputOk == false)
             {
+                bool sendFalse = false; // Behövs för att skicka falsk till CheckIfSquareChoiceIsOk()
                 ComputerMartin.InputSquareChoice(playerMarker_XorO);
-                Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice);
+                Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice, sendFalse);
             }
         }
         else if ((Player1.Name == "DatorÖrjan" && playerMarker_XorO == "X") || (Player2.Name == "DatorÖrjan" && playerMarker_XorO == "O")) // Om det är Amatör-Örjans Datorspelare
@@ -223,8 +224,9 @@ class Program
             InputOk = false;
             while (InputOk == false)
             {
+                bool sendFalse = false; // Se 10 rader upp i koden
                 ComputerOrjan.InputSquareChoice();
-                Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerOrjan.SquareOfChoice);
+                Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerOrjan.SquareOfChoice, sendFalse);
             }
         }
     }
@@ -354,22 +356,22 @@ class Program
     {
         if (Player1or2 == 1)
         {
-            (Player1.Name + " tänker, var god vänta.").CW(2, 15, "Green");
-            Thread.Sleep(1000);
-            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
-            Thread.Sleep(1000);
-            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
-            Thread.Sleep(1000);
+            //(Player1.Name + " tänker, var god vänta.").CW(2, 15, "Green");
+            //Thread.Sleep(1000);
+            //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
+            //Thread.Sleep(1000);
+            //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
+            //Thread.Sleep(1000);
            
         }
         if (Player1or2 == 2)
         {
-            (Player2.Name + " tänker, var god vänta.").CW(2, 15, "Blue");
-            Thread.Sleep(1000);
-            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Blue");
-            Thread.Sleep(1000);
-            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Blue");
-            Thread.Sleep(1000);  
+            //(Player2.Name + " tänker, var god vänta.").CW(2, 15, "Blue");
+            //Thread.Sleep(1000);
+            //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Blue");
+            //Thread.Sleep(1000);
+            //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Blue");
+            //Thread.Sleep(1000);  
         }
     }
     
