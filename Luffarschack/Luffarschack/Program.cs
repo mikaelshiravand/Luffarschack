@@ -30,8 +30,6 @@ class Program
         "2 : Linhs Datorspelare.".CW(0, 3, "Gray");
         "3 : Martins Datorspelare.".CW(0, 4, "Gray");
         "4 : Mikaels Datorspelare.".CW(0, 5, "Gray");
-        "5 : Rabihs Datorspelare.".CW(0, 6, "Gray");
-        "6 : Amatör-Örjans Datorspelare.".CW(0, 7, "Gray");
 
         startMenu_CreatePlayer1();
         startMenu_CreatePlayer2();
@@ -56,7 +54,7 @@ class Program
                 Player1.Player1Name(Player1);
                 break;
             }
-            else if (Play1 == "2" || Play1 == "3" || Play1 == "4" || Play1 == "5" || Play1 == "6")
+            else if (Play1 == "2" || Play1 == "3" || Play1 == "4")
             {
                 createComputerPlayer1(Play1);
                 break;
@@ -82,7 +80,7 @@ class Program
                 Player2.Player2Name(Player2); //TODOMN:Denna kanske bara funkar om Player görs först i main
                 break;
             }
-            else if (Play2 == "2" || Play2 == "3" || Play2 == "4" || Play2 == "5" || Play2 == "6")
+            else if (Play2 == "2" || Play2 == "3" || Play2 == "4")
             {
                 createComputerPlayer2(Play2);
                 break;
@@ -190,7 +188,6 @@ class Program
         Console.ReadKey();
         // Ingen vinner.
         Player1.NoWin++;
-        Player2.NoWin++;
         // Supersnygg mini-metod istället för megastor copypaste
         MyBoard.NewGame(MyBoard);
     }
@@ -220,14 +217,6 @@ class Program
                 ComputerMartin.InputSquareChoice(playerMarker_XorO);
                 Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice);
             }
-        }
-        else if ((Player1.Name == "DatorMikael" && playerMarker_XorO == "X") || (Player2.Name == "DatorMikael" && playerMarker_XorO == "O")) // Om det är Mikaels Datorspelare
-        {
-            // Kalla på er Datorspelarklass olika metoder
-        }
-        else if ((Player1.Name == "DatorRabih" && playerMarker_XorO == "X") || (Player2.Name == "DatorRabih" && playerMarker_XorO == "O")) // Om det är Rabihs Datorspelare
-        {
-            // Kalla på er Datorspelarklass olika metoder
         }
         else if ((Player1.Name == "DatorÖrjan" && playerMarker_XorO == "X") || (Player2.Name == "DatorÖrjan" && playerMarker_XorO == "O")) // Om det är Amatör-Örjans Datorspelare
         {
@@ -259,18 +248,6 @@ class Program
         }
         else if (number == "4")
         {
-            Player1.Name = "DatorMikael";
-            ComputerPlayer = 3;
-            printPlayer1Name();
-        }
-        else if (number == "5")
-        {
-            Player1.Name = "DatorRabih";
-            ComputerPlayer = 4;
-            printPlayer1Name();
-        }
-        else if (number == "6")
-        {
             Player1.Name = "DatorÖrjan";
             ComputerPlayer = 5;
             printPlayer1Name();
@@ -292,18 +269,6 @@ class Program
             printPlayer2Name();
         }
         else if (number == "4")
-        {
-            Player2.Name = "DatorMikael";
-            ComputerPlayer = 3;
-            printPlayer2Name();
-        }
-        else if (number == "5")
-        {
-            Player2.Name = "DatorRabih";
-            ComputerPlayer = 4;
-            printPlayer2Name();
-        }
-        else if (number == "6")
         {
             Player2.Name = "DatorÖrjan";
             ComputerPlayer = 5;
@@ -331,7 +296,7 @@ class Program
         clearStartMenuScreen();
         Console.ForegroundColor = ConsoleColor.White;
         Console.SetCursorPosition(24, 9);
-        "\nFel Inmatning. Försök igen! (Ange ett nummer mellan 1-6) ".EchoWriteLine();
+        "\nFel Inmatning. Försök igen! (Ange ett nummer mellan 1-4) ".EchoWriteLine();
         //TODOMN Ta bort denna rad startMenu();
     }
 

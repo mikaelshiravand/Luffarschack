@@ -44,9 +44,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="ComputerLinh.cs" />
     <Compile Include="ComputerMartin.cs" />
-    <Compile Include="ComputerMikael.cs" />
     <Compile Include="ComputerOrjan.cs" />
-    <Compile Include="ComputerRabih.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
