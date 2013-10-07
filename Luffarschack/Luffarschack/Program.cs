@@ -4,16 +4,14 @@ using System.Threading;
 
 class Program
 {
-    //Martin säger: Om vi skapar myBoard och players här så kommer vi åt den på fler ställen, men själva värdet på myBoard skapas fortfarande i Main.
     public static Board MyBoard;
     public static Player Player1;
     public static Player Player2;
     public static int whoseTurn = 0;
     public static string playerChoiceOfSquare = "";
-    public static bool Player1Human = false; //TODOMN:från multiplayer
+    public static bool Player1Human = false; 
     public static bool Player2Human = false;
     public static int ComputerPlayer;
-    // Martin: Tror inte att ett objekt av ComputerOrjan behövs, som följer: public static ComputerOrjan AiOrjan; (sök på TODOMN (omkring rad 270) för mer info
     public static bool InputOk;
     public static string fillLine = new string(' ', Console.WindowWidth); // För att radera felaktiga inmatningar av användaren
 
@@ -77,7 +75,7 @@ class Program
             {
                 fillLine.CW(0, 10, "");
                 Player2Human = true;
-                Player2.Player2Name(Player2); //TODOMN:Denna kanske bara funkar om Player görs först i main
+                Player2.Player2Name(Player2);
                 break;
             }
             else if (Play2 == "2" || Play2 == "3" || Play2 == "4")
@@ -214,7 +212,7 @@ class Program
             InputOk = false;
             while (InputOk == false)
             {
-                bool sendFalse = false; // Behövs för att skicka falsk till CheckIfSquareChoiceIsOk()
+                bool sendFalse = false; // Behövs för att skicka falskt till CheckIfSquareChoiceIsOk()
                 ComputerMartin.InputSquareChoice(playerMarker_XorO);
                 Player.CheckIfSquareChoiceIsOk(playerMarker_XorO, ComputerMartin.SquareOfChoice, sendFalse);
             }
@@ -299,7 +297,6 @@ class Program
         Console.ForegroundColor = ConsoleColor.White;
         Console.SetCursorPosition(24, 9);
         "\nFel Inmatning. Försök igen! (Ange ett nummer mellan 1-4) ".EchoWriteLine();
-        //TODOMN Ta bort denna rad startMenu();
     }
 
     static void programInfo()
@@ -356,30 +353,29 @@ class Program
     {
         if (Player1or2 == 1)
         {
-            //(Player1.Name + " tänker, var god vänta.").CW(2, 15, "Green");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
-            //Thread.Sleep(1000);
+            (Player1.Name + " tänker, var god vänta.").CW(2, 15, "Green");
+            Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Green");
+            Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Green");
+            Thread.Sleep(1000);
            
         }
         if (Player1or2 == 2)
         {
-            //(Player2.Name + " tänker, var god vänta.").CW(2, 15, "Blue");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Blue");
-            //Thread.Sleep(1000);
-            //(Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Blue");
-            //Thread.Sleep(1000);  
+            (Player2.Name + " tänker, var god vänta.").CW(2, 15, "Blue");
+            Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. .").CW(2, 15, "Blue");
+            Thread.Sleep(1000);
+            (Player2.Name + " tänker, var god vänta. . .").CW(2, 15, "Blue");
+            Thread.Sleep(1000);
         }
     }
     
     public static void whoWillStart()
     {
         Random rand = new Random();
-        //Martin: google verkar säga att man ska skriva .Next("lägsta talet", "högsta talet") men 3 verkar vara "mindre än 3"
-        whoseTurn = rand.Next(1, 3);
+        whoseTurn = rand.Next(1, 3); // Slumpar ett tal mellan 1-2
     }
 
     public static string returnLastLetter(string playerName)
@@ -403,9 +399,6 @@ class Program
         Player1 = new Player("", "X"); 
         Player2 = new Player("", "O");
         MyBoard = new Board();
-        // Martin: Kommentar kl 9.00 Gör AiOrjan till ett objekt för att kunna kalla på metoder i klassen ComputerOrjan.
-        // Martin: Kommentar kl 11.30 Jag kom på att AiOrjan aldrig någonsin behöver användas, kommenterar ut den men låter den stå kvar för säkerhetsskull. TODOMN:Radera AiOrjan innan inlämning om den inte behövs
-        //AiOrjan = new ComputerOrjan(); 
 
         startMenu();
         Console.Clear();

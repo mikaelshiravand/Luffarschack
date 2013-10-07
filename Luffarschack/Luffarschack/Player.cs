@@ -74,7 +74,6 @@ public class Player
     
     public void Player1Name(Player Player1)
     {
-        //Player1 = new Player("", "X"); //TODOMN:Kolla att detta blir rätt placerat här.
         Console.ForegroundColor = ConsoleColor.Gray;
         "Ange namn på Spelare ett\n-> ".CW(0, 14, "Gray");
         Console.ForegroundColor = ConsoleColor.Green;
@@ -82,7 +81,6 @@ public class Player
     }
     public void Player2Name(Player Player2)
     {
-        //Player2 = new Player("", "O"); //TODOMN:Kolla att detta blir rätt placerat här.
         Console.ForegroundColor = ConsoleColor.Gray;
         "Ange namn på Spelare två\n-> ".CW(0, 16, "Gray");
         Console.ForegroundColor = ConsoleColor.Blue;
